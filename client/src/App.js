@@ -12,7 +12,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost.com:5000/api/courses')
+    fetch('http://localhost:5000/api/courses')
       .then(res => res.json())
       .then(responseData => {
         this.setState({courses: responseData})
@@ -23,7 +23,7 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.courses)
+    console.log(this.state.courses);
     return (
       <div className="App">
         <header className="App-header">
