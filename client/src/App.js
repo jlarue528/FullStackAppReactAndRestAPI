@@ -1,42 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
 import { use } from '../../api/routes';
-import { useEffect } from 'react';
+import { Component } from 'react';
 
-function App() {
+export default class App extends Component {
 
-  let courseList = [];
+  constructor() {
+    super();
+    this.state = {
+      courses: []
+    };
+  }
 
-  useEffect(() => {
-    const apiURL = 'http://localhost:5000/api/courses'
-    fetch(apiURL)
-      .then((res) => res.json())
-      .then((courses) => courses.push(courseList))
-  });
+  componentDidMount() {
+    fetch('http://localhost.com:5000/api/courses')
+      .then(res => res.json())
+      .then(responseData => {
+        this.setState({courses: responseData})
+      })
+      .catch(error => {
+        console.log('Error Fetching Data', error);
+      });
+  }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {courseList => {
-          <ul>
-            <li>{courseList}</li>
-          </ul>
-        }};
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  render() {
+    console.log(this.state.courses)
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </header>
+      </div>
+    );
+  };
+};
 
-export default App;
+
