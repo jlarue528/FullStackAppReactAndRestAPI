@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import { use } from '../../api/routes';
 import { Component } from 'react';
 
 export default class App extends Component {
