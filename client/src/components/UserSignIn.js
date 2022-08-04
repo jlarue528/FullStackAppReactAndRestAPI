@@ -19,7 +19,7 @@ export default class UserSignIn extends Component {
                     <label for="password">Password</label>
                     <input id="password" name="password" type="password" value=""></input>
                     {/* <button class="button" type="submit">Sign In</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link> */}
-                    <button class="button" type="submit">Sign In</button><Link to="/courses"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
+                    <button class="button" type="submit">Sign In</button><Link to="/api/courses"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
                 </form>
                 <p>Don't have a user account? Click here to <NavLink to="/signup">sign up</NavLink>!</p>
         </div>

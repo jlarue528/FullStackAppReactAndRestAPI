@@ -56,7 +56,7 @@ export default class CreateCourse extends Component {
                             </div>
                         </div>
                         {/* <button class="button" type="submit">Create Course</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link> */}
-                        <button class="button" type="submit">Create Course</button><Link to="/courses"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
+                        <button class="button" type="submit">Create Course</button><Link to="/api/courses"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
                     </form>
                 </div>
             </main>
