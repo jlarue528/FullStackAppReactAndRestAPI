@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class CreateCourse extends Component {
 
@@ -49,7 +50,8 @@ export default class CreateCourse extends Component {
                                 <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
                             </div>
                         </div>
-                        <button class="button" type="submit">Create Course</button><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+                        {/* <button class="button" type="submit">Create Course</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link> */}
+                        <button class="button" type="submit">Create Course</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
                     </form>
                 </div>
             </main>

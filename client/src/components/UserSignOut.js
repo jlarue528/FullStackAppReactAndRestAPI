@@ -1,7 +1,7 @@
 const UserSignOut = () => {
 
     return (
-        <h1> You have been signed out. </h1>
+        <h1> You have been signed out. Redirect to / </h1>
     );
 };
 

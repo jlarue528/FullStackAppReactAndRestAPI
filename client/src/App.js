@@ -1,14 +1,18 @@
-// import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
-// import Courses from './components/Courses';
-// import CourseDetail from './components/CourseDetail';
-// import CreateCourse from './components/CreateCourse';
+import { 
+  BrowserRouter,
+  Route,
+  Routes
+} from 'react-router-dom';
+import Courses from './components/Courses';
+import CourseDetail from './components/CourseDetail';
+import CreateCourse from './components/CreateCourse';
 import Header from './components/Header';
 import UpdateCourse from './components/UpdateCourse';
-// import UserSignIn from './components/UserSignIn';
-// import UserSignUp from './components/UserSignUp';
-// import UserSignOut from './components/UserSignOut';
+import UserSignIn from './components/UserSignIn';
+import UserSignUp from './components/UserSignUp';
+import UserSignOut from './components/UserSignOut';
 
 export default class App extends Component {
 
@@ -16,39 +20,24 @@ export default class App extends Component {
     courses: []
   };
 
-  componentDidMount() {
-    fetch('http://localhost:5000/api/courses')
-      .then(res => res.json())
-      .then(responseData => {
-        this.setState({courses: responseData})
-      })
-      .catch(error => {
-        console.log('Error Fetching Data', error);
-      });
-  }
-
   render() {
-    console.log(this.state.courses);
     return (
-      <body>
+      <BrowserRouter>
+        <body>
           <Header />
-          <UpdateCourse />
-      </body>
-      // {/* // <Header />
+          <Courses />
 
-      // <UserSignIn />
-
-      // <UserSignUp />
-
-      // <UserSignOut />
-
-   
-
-      // <CourseDetail />
-
-      // <CreateCourse />
-
-      // <UpdateCourse /> */}
+          <Routes>
+            <Route exact path="/" render={()=> <Courses />}/>
+            <Route path="/create" render={()=> <CreateCourse />} />
+            <Route path="/:id/update" render={()=> <UpdateCourse />} />
+            <Route path="/:id" render={()=> <CourseDetail />} />
+            <Route path="/signin" render={()=> <UserSignIn />} />
+            <Route path="/signup" render={()=> <UserSignUp />} />
+            <Route path="/signout" render={()=> <UserSignOut />}/>
+          </Routes>
+        </body>
+      </BrowserRouter>
     );
   };
 };

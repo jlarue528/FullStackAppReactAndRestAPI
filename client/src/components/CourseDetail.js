@@ -1,13 +1,20 @@
 import { Component } from 'react';
+// import { NavLink, Link } from 'react-router-dom';
 
 export default class CourseDetail extends Component {
 
-    state = {
-        courses: []
-    };
+    constructor(props) {
+        super(props);
+        let match = props.match;
+
+        this.state = {
+            courses: [],
+            specificCourse: match.params.id
+        }
+    }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/courses/1')
+    fetch(`http://localhost:5000/api/courses/${this.state.specificCourse}`)
       .then(res => res.json())
       .then(responseData => {
         this.setState({courses: responseData})
@@ -18,7 +25,13 @@ export default class CourseDetail extends Component {
   }
 
   render() {
-    const course = this.state.courses;
+    // const course = this.state.courses;
+    // const actionButtons =
+    //     <div className="wrap">
+    //         <a href="update-course.html"><NavLink to={`/courses/${course.id}/update`} className="button">Update Course</NavLink></a>
+    //         <a href="delete-html"><NavLink to={`/courses/${course.id}/delete`} className="button">Delete Course</NavLink></a>
+    //         <a href="index.html"><NavLink to="/" className="button button-secondary">Return to List</NavLink></a>
+    //     </div>
     // const courseList =
     //     <div class="main--flex">
     //         <div>
@@ -42,11 +55,7 @@ export default class CourseDetail extends Component {
     return (
         <main>
             <div className="actions--bar">
-                <div className="wrap">
-                    <a className="button" href="update-course.html">Update Course</a>
-                    <a className="button" href="delete-html">Delete Course</a>
-                    <a className="button button-secondary" href="index.html">Return to List</a>
-                </div>
+               {/* {actionButtons} */}
             </div>
         
         <div className="wrap">
