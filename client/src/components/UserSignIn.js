@@ -1,25 +1,10 @@
-import '../styles.global.css';
 import { Component } from 'react';
 
 export default class UserSignIn extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      courses: []
+    state = {
+        courses: []
     };
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:5000/api/courses')
-      .then(res => res.json())
-      .then(responseData => {
-        this.setState({courses: responseData})
-      })
-      .catch(error => {
-        console.log('Error Fetching Data', error);
-      });
-  }
 
   render() {
     
@@ -35,7 +20,7 @@ export default class UserSignIn extends Component {
                     <button class="button" type="submit">Sign In</button><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
                 </form>
                 <p>Don't have a user account? Click here to <a href="sign-up.html">sign up</a>!</p>
-                
+
         </div>
     )};
 };

@@ -2,12 +2,9 @@ import { Component } from 'react';
 
 export default class Courses extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            courses: []
-        };
-    }
+    state = {
+        courses: []
+    };
 
     componentDidMount() {
         fetch('http://localhost:5000/api/courses')

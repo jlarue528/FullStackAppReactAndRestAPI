@@ -1,26 +1,11 @@
-import '../styles.global.css';
 import { Component } from 'react';
 
 export default class UserSignUp extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      courses: []
+    state = {
+        courses: []
     };
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:5000/api/courses')
-      .then(res => res.json())
-      .then(responseData => {
-        this.setState({courses: responseData})
-      })
-      .catch(error => {
-        console.log('Error Fetching Data', error);
-      });
-  }
-
+  
   render() {
     
     return (
