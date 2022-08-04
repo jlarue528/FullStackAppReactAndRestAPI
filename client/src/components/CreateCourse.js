@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 
 export default class CreateCourse extends Component {
 
-    state = {
-        courses: []
-    };
+    constructor(props) {
+        super(props);
+        let match = props.match;
+
+        this.state = {
+            courses: [],
+            specificCourse: match.params.id
+        }
+    }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/courses')
+    fetch(`http://localhost:5000/api/courses/${this.state.specificCourse}`)
       .then(res => res.json())
       .then(responseData => {
         this.setState({courses: responseData})
