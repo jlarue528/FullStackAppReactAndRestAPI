@@ -1,6 +1,14 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
+// import CourseDetail from './components';
+// import Courses from './components/Courses';
+import CourseDetail from './components/CourseDetail';
+// import CreateCourse from './components/CreateCourse';
+import Header from './components/Header';
+// import UpdateCourse from './components/UpdateCourse';
+// import UserSignIn from './components/UserSignIn';
+// import UserSignOut from './components/UserSignOut';
 
 export default class App extends Component {
 
@@ -25,22 +33,27 @@ export default class App extends Component {
   render() {
     console.log(this.state.courses);
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <body>
+        <div id="root">
+          <Header />
+          <CourseDetail />
+        </div>
+      </body>
+      // {/* // <Header />
+
+      // <UserSignIn />
+
+      // <UserSignUp />
+
+      // <UserSignOut />
+
+   
+
+      // <CourseDetail />
+
+      // <CreateCourse />
+
+      // <UpdateCourse /> */}
     );
   };
 };
