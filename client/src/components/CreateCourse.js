@@ -3,18 +3,17 @@ import { Link } from 'react-router-dom';
 
 export default class CreateCourse extends Component {
 
-    constructor(props) {
-        super(props);
-        let match = props.match;
+    // constructor(props) {
+    //     super(props);
+    //     let match = props.match;
 
-        this.state = {
-            courses: [],
-            specificCourse: match.params.id
+        state = {
+            courses: []
         }
-    }
+    // }
 
   componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/${this.state.specificCourse}`)
+    fetch(`http://localhost:5000/api/courses/1`)
       .then(res => res.json())
       .then(responseData => {
         this.setState({courses: responseData})
@@ -57,7 +56,7 @@ export default class CreateCourse extends Component {
                             </div>
                         </div>
                         {/* <button class="button" type="submit">Create Course</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link> */}
-                        <button class="button" type="submit">Create Course</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
+                        <button class="button" type="submit">Create Course</button><Link to="/courses"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
                     </form>
                 </div>
             </main>

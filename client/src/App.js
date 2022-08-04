@@ -15,26 +15,21 @@ import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
 
 export default class App extends Component {
-
-  state = {
-    courses: []
-  };
-
   render() {
     return (
       <BrowserRouter>
         <body>
           <Header />
-          <Courses />
+          {/* <Courses /> */}
 
           <Routes>
-            <Route exact path="/" render={()=> <Courses />}/>
-            <Route path="/api/courses/create" render={()=> <CreateCourse />} />
-            <Route path="/api/courses/:id/update" render={()=> <UpdateCourse />} />
-            <Route path="/api/courses/:id" render={()=> <CourseDetail />} />
-            <Route path="/signin" render={()=> <UserSignIn />} />
-            <Route path="/signup" render={()=> <UserSignUp />} />
-            <Route path="/signout" render={()=> <UserSignOut />}/>
+            <Route exact path="/api/courses" element={<Courses />}/>
+            <Route path="/api/courses/create" element={<CreateCourse />} />
+            <Route path="/api/courses/:id/update" element={<UpdateCourse />} />
+            <Route path="/api/courses/:id" element={<CourseDetail />} />
+            <Route path="/signin" element={<UserSignIn />} />
+            <Route path="/signup" element={<UserSignUp />} />
+            <Route path="/signout" element={<UserSignOut />}/>
           </Routes>
         </body>
       </BrowserRouter>

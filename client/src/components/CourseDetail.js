@@ -3,18 +3,17 @@ import { Component } from 'react';
 
 export default class CourseDetail extends Component {
 
-    constructor(props) {
-        super(props);
-        let match = props.match;
+    // constructor(props) {
+    //     super(props);
+    //     let match = props.match;
 
-        this.state = {
-            courses: [],
-            specificCourse: match.params.id
+        state = {
+            courses: []
         }
-    }
+    // }
 
   componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/${this.state.specificCourse}`)
+    fetch(`http://localhost:5000/api/courses/2`)
       .then(res => res.json())
       .then(responseData => {
         this.setState({courses: responseData})

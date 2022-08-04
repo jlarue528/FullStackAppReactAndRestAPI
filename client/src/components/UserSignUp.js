@@ -22,7 +22,7 @@ export default class UserSignUp extends Component {
                     <input id="emailAddress" name="emailAddress" type="email" value=""></input>
                     <label for="password">Password</label>
                     <input id="password" name="password" type="password" value=""></input>
-                    <button class="button" type="submit">Sign Up</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link>
+                    <button class="button" type="submit">Sign Up</button><Link to="/courses"><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link>
                 </form>
                 <p>Already have a user account? Click here to <a href="sign-in.html">sign in</a>!</p>
         </div>
