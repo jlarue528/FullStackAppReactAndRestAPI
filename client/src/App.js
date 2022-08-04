@@ -29,9 +29,9 @@ export default class App extends Component {
 
           <Routes>
             <Route exact path="/" render={()=> <Courses />}/>
-            <Route path="/create" render={()=> <CreateCourse />} />
-            <Route path="/:id/update" render={()=> <UpdateCourse />} />
-            <Route path="/:id" render={()=> <CourseDetail />} />
+            <Route path="/api/courses/create" render={()=> <CreateCourse />} />
+            <Route path="/api/courses/:id/update" render={()=> <UpdateCourse />} />
+            <Route path="/api/courses/:id" render={()=> <CourseDetail />} />
             <Route path="/signin" render={()=> <UserSignIn />} />
             <Route path="/signup" render={()=> <UserSignUp />} />
             <Route path="/signout" render={()=> <UserSignOut />}/>
