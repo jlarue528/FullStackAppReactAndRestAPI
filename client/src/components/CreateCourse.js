@@ -27,9 +27,9 @@ export default class CreateCourse extends Component {
     
     return (
             <main>
-                <div class="wrap">
+                <div className="wrap">
                     <h2>Create Course</h2>
-                    <div class="validation--errors">
+                    <div className="validation--errors">
                         <h3>Validation Errors</h3>
                         <ul>
                             <li>Please provide a value for "Title"</li>
@@ -37,7 +37,7 @@ export default class CreateCourse extends Component {
                         </ul>
                     </div>
                     <form>
-                        <div class="main--flex">
+                        <div className="main--flex">
                             <div>
                                 <label for="courseTitle">Course Title</label>
                                 <input id="courseTitle" name="courseTitle" type="text" value=""></input>
@@ -55,7 +55,7 @@ export default class CreateCourse extends Component {
                                 <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
                             </div>
                         </div>
-                        <button class="button" type="submit">Create Course</button><Link to="/api/courses"><button class="button button-secondary" onClick={this.props.clickCancel}>Cancel</button></Link>
+                        <button className="button" type="submit">Create Course</button><Link to="/api/courses"><button className="button button-secondary" onClick={this.props.clickCancel}>Cancel</button></Link>
                     </form>
                 </div>
             </main>

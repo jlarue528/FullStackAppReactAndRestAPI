@@ -8,13 +8,13 @@ export default class UserSignUp extends Component {
     };
 
     submitSignUp = () => {
-        
-    }
+
+    };
   
   render() {
     
     return (
-        <div class="form--centered">
+        <div className="form--centered">
                 <h2>Sign Up</h2>
                 
                 <form>
@@ -26,7 +26,7 @@ export default class UserSignUp extends Component {
                     <input id="emailAddress" name="emailAddress" type="email" value=""></input>
                     <label for="password">Password</label>
                     <input id="password" name="password" type="password" value=""></input>
-                    <button class="button" type="submit">Sign Up</button><Link to="/api/courses"><button class="button button-secondary" onClick={this.props.clickCancel}>Cancel</button></Link>
+                    <button className="button" type="submit">Sign Up</button><Link to="/api/courses"><button className="button button-secondary" onClick={this.props.clickCancel}>Cancel</button></Link>
                 </form>
                 <p>Already have a user account? Click here to <Link to="/signin">sign in</Link>!</p>
         </div>
