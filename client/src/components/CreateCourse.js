@@ -3,14 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default class CreateCourse extends Component {
 
-    // constructor(props) {
-    //     super(props);
-    //     let match = props.match;
+    state = {
+        courses: []
+    }
 
-        state = {
-            courses: []
-        }
-    // }
 
   componentDidMount() {
     fetch(`http://localhost:5000/api/courses/1`)
@@ -21,6 +17,10 @@ export default class CreateCourse extends Component {
       .catch(error => {
         console.log('Error Fetching Data', error);
       });
+  }
+
+  submitCreateNewCourse = () => {
+
   }
 
   render() {
@@ -55,8 +55,7 @@ export default class CreateCourse extends Component {
                                 <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
                             </div>
                         </div>
-                        {/* <button class="button" type="submit">Create Course</button><Link to="/"><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button></Link> */}
-                        <button class="button" type="submit">Create Course</button><Link to="/api/courses"><button class="button button-secondary" onclick="event.preventDefault();">Cancel</button></Link>
+                        <button class="button" type="submit">Create Course</button><Link to="/api/courses"><button class="button button-secondary" onClick={this.props.clickCancel}>Cancel</button></Link>
                     </form>
                 </div>
             </main>
