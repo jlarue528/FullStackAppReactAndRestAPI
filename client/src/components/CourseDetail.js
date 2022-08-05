@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { Provider } from './context';
 
 const CourseDetail = () => {
     const [ course, getCourse ] = useState([]);
@@ -47,7 +46,7 @@ const CourseDetail = () => {
                 <div>
                 <h3 className="course--detail--title">Course</h3>
                     <h4 className="course--name">{courseData.title}</h4>
-                    <p>{ `By ${courseData.User.firstName} ${courseData.User.lastName}` }</p>
+                    <p>{ `By ${course.User.firstName} ${course.User.lastName}` }</p>
 
                     <p>{courseData.description}</p>
             </div>
@@ -65,12 +64,10 @@ const CourseDetail = () => {
         </div>
 
     return (
-        <Provider value={course}>
             <main>
                 {actionButtons}
                 {courseDetails}
             </main>
-        </Provider>
     );
 }
 
