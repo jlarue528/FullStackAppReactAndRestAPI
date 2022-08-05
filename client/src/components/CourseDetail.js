@@ -2,14 +2,28 @@ import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 
 const CourseDetail = () => {
-    const [ course, getCourse ] = useState([]);
+    const [ course, getCourse ] = useState([{
+        course: [],
+        title: " ",
+        description: " ",
+        estimatedTime: " ",
+        materialsNeeded: " "
+    }]);
     const { id } = useParams();
+    console.log(id);
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
             .then(res => res.json())
             .then(responseData => {
-                getCourse({course: responseData})
+                console.log('TEST', responseData);
+                getCourse({
+                    course: responseData,
+                    title: responseData.title,
+                    description: responseData.description,
+                    estimatedTime: responseData.estimatedTime,
+                    materialsNeeded: responseData.materialsNeeded
+                })
         })
         .catch(error => {
             console.log('Error Fetching Data', error);
@@ -45,18 +59,18 @@ const CourseDetail = () => {
             <div className="main--flex">
                 <div>
                 <h3 className="course--detail--title">Course</h3>
-                    <h4 className="course--name">{courseData.title}</h4>
-                    <p>{ `By ${course.User.firstName} ${course.User.lastName}` }</p>
+                    <h4 className="course--name">{course.title}</h4>
+                    {/* <p>{ `By ${course.User.firstName} ${course.User.lastName}` }</p> */}
 
-                    <p>{courseData.description}</p>
+                    <p>{course.description}</p>
             </div>
             <div>
                 <h3 className="course--detail--title">Estimated Time</h3>
-                    <p>{courseData.estimatedTime}</p>
+                    <p>{course.estimatedTime}</p>
 
                 <h3 className="course--detail--title">Materials Needed</h3>
                     <ul className="course--detail--list">
-                        <li>{courseData.materialsNeeded}</li>
+                        <li>{course.materialsNeeded}</li>
                     </ul>
             </div>
             </div>

@@ -1,5 +1,5 @@
-import { useState, useEffect, useParams, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const UpdateCourse = () => {
     const [ course, getCourse ] = useState([]);
