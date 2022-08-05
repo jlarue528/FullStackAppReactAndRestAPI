@@ -6,10 +6,6 @@ export default class UserSignUp extends Component {
     state = {
         courses: []
     };
-
-    submitSignUp = () => {
-
-    };
   
   render() {
     

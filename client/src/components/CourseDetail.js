@@ -34,10 +34,10 @@ const CourseDetail = () => {
 
     const handleDelete = (courseId = id) => {
         fetch(`http://localhost:5000/api/courses/${courseId}/delete`, { method: 'DELETE' })
-            .then(res => res.json())
-            // .then(responseData => {
-                
-            // })
+            .then(async res => await res.json())
+            .then(() => {
+                console.log('removed');
+            })
             .catch(error => {
                 console.log('Delete Error', error)
             })
