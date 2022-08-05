@@ -1,55 +1,37 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const UpdateCourse = () => {
-    const [ course, getCourse ] = useState([]);
-    
-    let titleValue = useRef(course.title);
-    let descriptionValue = useRef(course.description);
-    let courseEstimatedTimeValue = useRef(course.estimatedTime);
-    let materialsNeededValue = useRef(course.materialsNeeded);
-
-    const [ title, updateTitle] = useState(titleValue);
-    const [ description, updateDescription ] = useState(descriptionValue);
-    const [ courseEstimatedTime, updateCourseEstimatedTime ] = useState(courseEstimatedTimeValue);
-    const [ materialsNeeded, updateMaterialsNeeded ] = useState(materialsNeededValue);
-
-    const { id } = useParams();
     const navigate = useNavigate();
+    const [ course, getCourse ] = useState({
+        course: [],
+        title: " ",
+        description: " ",
+        estimatedTime: " ",
+        materialsNeeded: " ",
+        firstName: " ",
+        lastName: " "
+    });
+    const { id } = useParams();
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
             .then(res => res.json())
             .then(responseData => {
-                getCourse({course: responseData})
+                getCourse({
+                    course: responseData,
+                    title: responseData.title,
+                    description: responseData.description,
+                    estimatedTime: responseData.estimatedTime,
+                    materialsNeeded: responseData.materialsNeeded,
+                    firstName: responseData.User.firstName,
+                    lastName: responseData.User.lastName
+                })
         })
         .catch(error => {
             console.log('Error Fetching Data', error);
         });
     }, [id]);
-
-
-    const handleUpdate = () => {
-        fetch(`http://localhost:5000/api/courses/${id}/update`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                title: title,
-                description: description,
-                estimatedTime: courseEstimatedTime,
-                materialsNeeded: materialsNeeded
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-        .then(response => {
-            console.log(response);
-            updateTitle({title: response.title})
-            updateDescription({description: response.description})
-            updateCourseEstimatedTime({estimatedTime: response.estimatedTime})
-            updateMaterialsNeeded({materialsNeeded: response.materialsNeeded})
-        });
-    };
 
     return (
         <div className="wrap">
@@ -60,20 +42,20 @@ const UpdateCourse = () => {
                     <label for="courseTitle">Course Title</label>
                     <input id="courseTitle" name="courseName" type="text" value={course.title}></input>
 
-                    <p>{`By ${course.User.firstName} ${course.User.lastName}`}</p>
+                    <p>{`By ${course.firstName} ${course.lastName}`}</p>
 
                     <label for="courseDescription">Course Description</label>
-                    <textarea id="courseDescription" name="courseDescription">{course.description}</textarea>
+                    <textarea id="courseDescription" name="courseDescription" value={course.description}></textarea>
                 </div>
                 <div>
                     <label for="estimatedTime">Estimated Time</label>
-                    <input id="estimatedTime" name="estimatedTime" type="text" value={course.estimatedTime}></input>
+                    <input id="estimatedTime" name="estimatedTime" type="text" value={course.estimatedTime || " "}></input>
 
                     <label for="materialsNeeded">Materials Needed</label>
-                    <textarea id="materialsNeeded" name="materialsNeeded">{course.materialsNeeded}</textarea>
+                    <textarea id="materialsNeeded" name="materialsNeeded" value={course.materialsNeeded || " "}></textarea>
                 </div>
             </div>
-            <button className="button" type="submit" onSubmit={handleUpdate}>Update Course</button><Link to="/api/courses"><button className="button button-secondary" onClick={() => navigate("/api/courses")}>Cancel</button></Link>
+            <button className="button" type="submit" onSubmit={"test"}>Update Course</button><Link to="/api/courses"><button className="button button-secondary" onClick={() => navigate("/api/courses")}>Cancel</button></Link>
         </form>
     </div>
    );

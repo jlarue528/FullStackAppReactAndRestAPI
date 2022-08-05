@@ -2,27 +2,29 @@ import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 
 const CourseDetail = () => {
-    const [ course, getCourse ] = useState([{
+    const [ course, getCourse ] = useState({
         course: [],
         title: " ",
         description: " ",
         estimatedTime: " ",
-        materialsNeeded: " "
-    }]);
+        materialsNeeded: " ",
+        firstName: " ",
+        lastName: " "
+    });
     const { id } = useParams();
-    console.log(id);
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
             .then(res => res.json())
             .then(responseData => {
-                console.log('TEST', responseData);
                 getCourse({
                     course: responseData,
                     title: responseData.title,
                     description: responseData.description,
                     estimatedTime: responseData.estimatedTime,
-                    materialsNeeded: responseData.materialsNeeded
+                    materialsNeeded: responseData.materialsNeeded,
+                    firstName: responseData.User.firstName,
+                    lastName: responseData.User.lastName
                 })
         })
         .catch(error => {
@@ -41,14 +43,12 @@ const CourseDetail = () => {
             })
     }
 
-    const courseData = course.course;
-
     const  actionButtons =
         <div className="actions--bar">
             <div className="wrap">
-                <NavLink to={`/courses/${courseData.id}/update`} className="button">Update Course</NavLink>
-                <NavLink to={`/courses/${courseData.id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
-                <NavLink to="/" className="button button-secondary">Return to List</NavLink>
+                <NavLink to={`/api/courses/${id}/update`} className="button">Update Course</NavLink>
+                <NavLink to={`/api/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
+                <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
             </div>
         </div>;
 
@@ -60,7 +60,7 @@ const CourseDetail = () => {
                 <div>
                 <h3 className="course--detail--title">Course</h3>
                     <h4 className="course--name">{course.title}</h4>
-                    {/* <p>{ `By ${course.User.firstName} ${course.User.lastName}` }</p> */}
+                    <p>{ `By ${course.firstName} ${course.lastName}` }</p>
 
                     <p>{course.description}</p>
             </div>

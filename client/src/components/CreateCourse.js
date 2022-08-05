@@ -7,7 +7,6 @@ export default class CreateCourse extends Component {
         courses: []
     }
 
-
   componentDidMount() {
     fetch(`http://localhost:5000/api/courses/1`)
       .then(res => res.json())
