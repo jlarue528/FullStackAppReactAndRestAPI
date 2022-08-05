@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default class CreateCourse extends Component {
 
     state = {
-        courses: []
+        course: []
     }
 
   componentDidMount() {
