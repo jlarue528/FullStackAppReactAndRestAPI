@@ -1,65 +1,77 @@
-import { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import { Provider } from './context';
 
-export default class CourseDetail extends Component {
+const CourseDetail = () => {
+    const [ course, getCourse ] = useState([]);
+    const { id } = useParams();
 
-    state = {
-        courses: []
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
+            .then(res => res.json())
+            .then(responseData => {
+                getCourse({course: responseData})
+        })
+        .catch(error => {
+            console.log('Error Fetching Data', error);
+        });
+    }, [id]);
+
+    const handleDelete = (courseId = id) => {
+        fetch(`http://localhost:5000/api/courses/${courseId}/delete`, { method: 'DELETE' })
+            .then(res => res.json())
+            // .then(responseData => {
+                
+            // })
+            .catch(error => {
+                console.log('Delete Error', error)
+            })
     }
 
-  componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/${this.props.id}`)
-      .then(res => res.json())
-      .then(responseData => {
-        this.setState({courses: responseData})
-      })
-      .catch(error => {
-        console.log('Error Fetching Data', error);
-      });
-  }
+    const courseData = course.course;
 
-  render() {
-    const course = this.state.courses;
-    console.log(course);
-    const actionButtons =
-    <div className="actions--bar">
-        <div className="wrap">
-            <NavLink to={`/courses/${course.id}/update`} className="button">Update Course</NavLink>
-            <NavLink to={`/courses/${course.id}/delete`} className="button">Delete Course</NavLink>
-            <NavLink to="/" className="button button-secondary">Return to List</NavLink>
-        </div>
-    </div>
-    
+    const  actionButtons =
+        <div className="actions--bar">
+            <div className="wrap">
+                <NavLink to={`/courses/${courseData.id}/update`} className="button">Update Course</NavLink>
+                <NavLink to={`/courses/${courseData.id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
+                <NavLink to="/" className="button button-secondary">Return to List</NavLink>
+            </div>
+        </div>;
+
     const courseDetails =
-
         <div className="wrap">
-            <h2>Course Detail</h2>
-        <form>
-        <div className="main--flex">
-            <div>
+        <h2>Course Detail</h2>
+            <form>
+            <div className="main--flex">
+                <div>
                 <h3 className="course--detail--title">Course</h3>
-                    <h4 className="course--name">{course.title}</h4>
-                        {/* <p>{ `By ${course.User.firstName} ${course.User.lastName}` }</p> */}
+                    <h4 className="course--name">{courseData.title}</h4>
+                    <p>{ `By ${courseData.User.firstName} ${courseData.User.lastName}` }</p>
 
-                        <p>{course.description}</p>
+                    <p>{courseData.description}</p>
             </div>
             <div>
                 <h3 className="course--detail--title">Estimated Time</h3>
-                    <p>{course.estimatedTime}</p>
+                    <p>{courseData.estimatedTime}</p>
 
-                    <h3 className="course--detail--title">Materials Needed</h3>
-                        <ul className="course--detail--list">
-                            <li>{course.materialsNeeded}</li>
-                        </ul>
+                <h3 className="course--detail--title">Materials Needed</h3>
+                    <ul className="course--detail--list">
+                        <li>{courseData.materialsNeeded}</li>
+                    </ul>
             </div>
+            </div>
+            </form>
         </div>
-        </form>
-        </div>;
 
     return (
-        <main>
-            {actionButtons}
-            {courseDetails}
-        </main>
-    )};
-};
+        <Provider value={course}>
+            <main>
+                {actionButtons}
+                {courseDetails}
+            </main>
+        </Provider>
+    );
+}
+
+export default CourseDetail;
