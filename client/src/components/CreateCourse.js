@@ -8,7 +8,7 @@ export default class CreateCourse extends Component {
     }
 
   componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/1`)
+    fetch(`http://localhost:5000/api/courses/`)
       .then(res => res.json())
       .then(responseData => {
         this.setState({courses: responseData})

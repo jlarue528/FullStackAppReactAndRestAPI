@@ -33,6 +33,26 @@ const UpdateCourse = () => {
         });
     }, [id]);
 
+    // const handleUpdate = (id) => {
+    //     (async () => {
+    //         const requestOptions = {
+    //             method: 'PUT',
+    //             headers: { 'Content-Type': 'application/json'},
+    //             body: JSON.stringify({
+    //                 title: course.title,
+    //                 description: course.description,
+    //                 estimatedTime: course.estimatedTime,
+    //                 materialsNeeded: course.materialsNeeded,
+    //             })
+    //         };
+    //         const response = await fetch(`http://localhost:5000/api/courses/${id}/update`, requestOptions);
+    //         const data = await response.json()
+    //             .catch(error => {
+    //                 console.log(error);
+    //             })
+    //     })();
+    // }
+
     return (
         <div className="wrap">
         <h2>Update Course</h2>
