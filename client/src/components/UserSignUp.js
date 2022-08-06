@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
 import Form from './Form'
-
 
 export default class UserSignUp extends Component {
 
@@ -13,7 +12,7 @@ export default class UserSignUp extends Component {
         errors: []
     };
 
-    submit = (e) => {
+    submit = () => {
         const { context } = this.props;
         
         const {
@@ -37,17 +36,18 @@ export default class UserSignUp extends Component {
                     this.setState({ errors });
                     console.log('errors occurred');
                 } else {
-                    console.log('user is successfully created.')
+                    console.log('User is successfully created.')
                 }
             })
             .catch(err => {
             console.log(err);
-            this.props.history.push('/error');
+            // this.props.history.push('/error');
     });
     }
 
     cancel = () => {
-        this.props.history.push('/courses/api');
+        console.log(this.props);
+        // this.props.navigate('/api/courses');
     }
 
     handleChange = (e) => {
