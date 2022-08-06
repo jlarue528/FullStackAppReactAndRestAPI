@@ -1,5 +1,7 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Form from './Form'
+
 
 export default class UserSignUp extends Component {
 
@@ -11,23 +13,9 @@ export default class UserSignUp extends Component {
         errors: []
     };
 
-    async createUser(user) {
-        console.log(this.props);
-        const response = await this.props.api('/users', 'POST', user);
-        if (response.status === 201) {
-          return [];
-        }
-        else if (response.status === 400) {
-          return response.json().then(data => {
-            return data.errors;
-          });
-        }
-        else {
-          throw new Error();
-        }
-    }
-
-    submit () {
+    submit = (e) => {
+        const { context } = this.props;
+        
         const {
             firstName,
             lastName,
@@ -35,7 +23,7 @@ export default class UserSignUp extends Component {
             password
         } = this.state
 
-        //new user payload
+        //new user data
         const user = {
             firstName,
             lastName,
@@ -43,8 +31,7 @@ export default class UserSignUp extends Component {
             password
         }
 
-        (async () => {
-            await this.createUser(user)
+        context.data.createUser(user)
             .then(errors => {
                 if(errors.length) {
                     this.setState({ errors });
@@ -54,9 +41,13 @@ export default class UserSignUp extends Component {
                 }
             })
             .catch(err => {
-                console.log(err);
-            })
-        })();
+            console.log(err);
+            this.props.history.push('/error');
+    });
+    }
+
+    cancel = () => {
+        this.props.history.push('/courses/api');
     }
 
     handleChange = (e) => {
@@ -71,22 +62,64 @@ export default class UserSignUp extends Component {
     }
 
     render() {
+        const {
+            firstName,
+            lastName,
+            emailAddress,
+            password,
+            errors,
+          } = this.state;
     
     return (
         <div className="form--centered">
                 <h2>Sign Up</h2>
-                
-                <form onSubmit={this.submit}> 
-                    <label htmlFor="firstName">First Name</label>
-                    <input id="firstName" name="firstName" type="text" value={this.state.firstName} onChange={this.handleChange}></input>
-                    <label htmlFor="lastName">Last Name</label>
-                    <input id="lastName" name="lastName" type="text" value={this.state.lastName} onChange={this.handleChange}></input>
-                    <label htmlFor="emailAddress">Email Address</label>
-                    <input id="emailAddress" name="emailAddress" type="email" value={this.state.emailAddress} onChange={this.handleChange}></input>
-                    <label htmlFor="password">Password</label>
-                    <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange}></input>
-                    <button className="button" type="submit">Sign Up</button><Link to="/api/courses"><button className="button button-secondary">Cancel</button></Link>
-                </form>
+                <Form
+                    cancel={this.cancel}
+                    errors={errors}
+                    submit={this.submit}
+                    submitButtonText="Sign Up"
+                    elements={() => (
+                        <React.Fragment>
+                            <label htmlFor="firstName">
+                                First Name
+                                <input
+                                    id="firstName"
+                                    name="firstName"
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={firstName} />
+                                </label>
+                            <label htmlFor="lastName">
+                                Last Name
+                                <input
+                                id="lastName"
+                                name="lastName"
+                                type="text"
+                                onChange={this.handleChange} 
+                                value={lastName} />
+                            </label>
+
+                            <label htmlFor="emailAddress">
+                                Email Address
+                                <input 
+                                id="emailAddress"
+                                name="emailAddress"
+                                type="text"
+                                onChange={this.handleChange} 
+                                value={emailAddress}/>
+                            </label>
+                          
+                            <label htmlFor="password">
+                                Password
+                                < input 
+                                id="password"
+                                name="password"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={password} />
+                            </label> 
+                        </React.Fragment>
+                    )}/>
                 <p>Already have a user account? Click here to <Link to="/signin">sign in</Link>!</p>
         </div>
     )};

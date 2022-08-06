@@ -14,44 +14,63 @@ import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
 
+import withContext from './Context';
+
+const UserSignUpWithContext = withContext(UserSignUp);
+
 export default class App extends Component {
 
-  api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
-    const url = `http://localhost:5000/api/` + path;
+//   constructor(props) {
+//     super(props);
+//     this.getUserData = this.getUserData.bind(this);
+// }
 
-    const options = {
-      method,
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      }
-    }
 
-    if(body !== null) {
-      options.body = JSON.stringify(body);
-    }
+  // state = {
+  //   signInCredentials: ''
+  // }
 
-    if(requiresAuth) {
-      const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
+  // api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
+  //   const url = `http://localhost:5000/api` + path;
 
-      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
-    }
+  //   const options = {
+  //     method,
+  //     headers: {
+  //       'Content-Type': 'application/json; charset=utf-8'
+  //     }
+  //   }
 
-    return fetch(url, options)
-  }
+  //   if(body !== null) {
+  //     options.body = JSON.stringify(body);
+  //   }
 
-  handleSubmit(e, props) {
-    const { submit } = props;
-    e.preventDefault();
-    submit();
-  }
+  //   if(requiresAuth) {
+  //     const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
 
-  handleCancel(e, props) {
-    const { cancel } = props;
-    e.preventDefault()
-    cancel()
-  }
+  //     options.headers['Authorization'] = `Basic ${encodedCredentials}`;
+  //   }
+
+  //   return fetch(url, options)
+  // }
+
+  // async getUserData() {
+  //   const response = await this.api(`/users`, 'GET', null);
+  //     if (response.status === 200) {
+  //       return response.json().then(data => data);
+  //    }
+  //     else if (response.status === 401) {
+  //       return null;
+  //     }
+  //     else {
+  //       throw new Error();
+  //     }
+  // }
+
+  // async signIn(emailAddress, password) {
+  //   const user = await this.getUserData(emailAddress, password);
+  //   return user;
+  // }
   
-
   render() {
     return (
       <BrowserRouter>
@@ -59,11 +78,11 @@ export default class App extends Component {
 
           <Routes>
             <Route exact path="/api/courses" element={<Courses />}/>
-            <Route path="/api/courses/create" element={<CreateCourse clickCancel={this.selectCancel}/>} />
+            <Route path="/api/courses/create" element={<CreateCourse />} />
             <Route path="/api/courses/:id/update" element={<UpdateCourse />} />
-            <Route path="/api/courses/:id" element={<CourseDetail data={this.getParamData}/>} />
-            <Route path="/signin" element={<UserSignIn authData={this.api}/>} />
-            <Route path="/signup" element={<UserSignUp />} />
+            <Route path="/api/courses/:id" element={<CourseDetail />} />
+            <Route path="/signin" element={<UserSignIn />} />
+            <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOut />}/>
           </Routes>
       </BrowserRouter>
