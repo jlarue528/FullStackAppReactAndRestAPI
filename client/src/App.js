@@ -16,6 +16,42 @@ import UserSignOut from './components/UserSignOut';
 
 export default class App extends Component {
 
+  api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
+    const url = `http://localhost:5000/api/` + path;
+
+    const options = {
+      method,
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      }
+    }
+
+    if(body !== null) {
+      options.body = JSON.stringify(body);
+    }
+
+    if(requiresAuth) {
+      const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
+
+      options.headers['Authorization'] = `Basic ${encodedCredentials}`;
+    }
+
+    return fetch(url, options)
+  }
+
+  handleSubmit(e, props) {
+    const { submit } = props;
+    e.preventDefault();
+    submit();
+  }
+
+  handleCancel(e, props) {
+    const { cancel } = props;
+    e.preventDefault()
+    cancel()
+  }
+  
+
   render() {
     return (
       <BrowserRouter>
@@ -26,7 +62,7 @@ export default class App extends Component {
             <Route path="/api/courses/create" element={<CreateCourse clickCancel={this.selectCancel}/>} />
             <Route path="/api/courses/:id/update" element={<UpdateCourse />} />
             <Route path="/api/courses/:id" element={<CourseDetail data={this.getParamData}/>} />
-            <Route path="/signin" element={<UserSignIn />} />
+            <Route path="/signin" element={<UserSignIn authData={this.api}/>} />
             <Route path="/signup" element={<UserSignUp />} />
             <Route path="/signout" element={<UserSignOut />}/>
           </Routes>
