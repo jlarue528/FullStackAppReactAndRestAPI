@@ -9,8 +9,8 @@ export class Provider extends Component {
     state = {
         authenticatedUser: null,
         // this.cookie ? JSON.parse(this.cookie) :
-        // emailAddress: " ",
-        // password: " "
+        emailAddress: "",
+        password: ""
     }
 
     constructor() {

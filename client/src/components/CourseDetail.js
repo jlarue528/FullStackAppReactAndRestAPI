@@ -66,7 +66,6 @@ const CourseDetail = (props) => {
                         <NavLink to={`/api/courses/${id}/update`} className="button">Update Course</NavLink>
                         <NavLink to={`/api/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
                         <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
-
                     </React.Fragment>
                     :
                     <React.Fragment>

@@ -67,9 +67,13 @@ export default class Data {
         }
     }
 
-    async updateCourse(course, id, credentials) {
+    async updateCourse(course, id, emailAddress, password) {
+        const credentials = {
+            "emailAddress": emailAddress, 
+            "password": password
+        }
         const response = await this.api(`/courses/${id}`, 'PUT', course, true, credentials);
-        if(credentials) {
+        // if(credentials) {
             if (response.status === 201) {
                 console.log('course created successfully');
               return [];
@@ -77,7 +81,7 @@ export default class Data {
                 return response.json().then(data => {
                   return data.errors;
                 });
-            }
+            // }
         }  else {
             throw new Error();
         }

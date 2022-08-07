@@ -6,8 +6,8 @@ const UpdateCourse = (props) => {
     const navigate = useNavigate();
     
     const { context } = props;
-    console.log(context.authenticatedUser)
-    const auth = context.authenticatedUser;
+    const authEmail = context.emailAddress;
+    const authPassword = context.password;
     
     const [ course, getCourse ] = useState({
         course: [],
@@ -43,10 +43,6 @@ const UpdateCourse = (props) => {
     }, [id]);
 
     const submit = () => {
-   
-        const context = props.context;
-        const credentials = context.authenticatedUser
-
         //updated course data
         const course = {
             title,
@@ -55,31 +51,29 @@ const UpdateCourse = (props) => {
             materialsNeeded,
         }
 
-        context.data.updateCourse(course, id, credentials)
-            .then(errors => {
-                if(errors.length) {
-                    setErrors({errors});
-                    console.log('errors occurred');
-                } else {
-                    console.log('User is successfully created.')
-                }
-            })
-            .catch(err => {
-            console.log(err);
-            navigate('/error');
-            // this.props.history.push('/error');
+        context.data.updateCourse(course, id, authEmail, authPassword)
+        .then(errors => {
+            if(errors.length) {
+                setErrors({errors});
+                console.log('errors occurred');
+            } else {
+                console.log('User is successfully created.')
             }
+        })
+        .catch(err => {
+        console.log(err);
+        navigate('/error');
+        // this.props.history.push('/error');
+        }
         );   
     }
 
     const handleChange = (e) => {
         const name = e.target.name;
-        const value= e.target.value;
+        let value= e.target.value;
 
-        this.setState(() => {
-            return {
-                [name]: value
-            };
+        getCourse({
+            [name]: value
         });
     }
 
@@ -95,8 +89,6 @@ const UpdateCourse = (props) => {
         estimatedTime,
         materialsNeeded,
     } = course;
-
-    console.log(course);
 
     return (
         <div className="wrap">
