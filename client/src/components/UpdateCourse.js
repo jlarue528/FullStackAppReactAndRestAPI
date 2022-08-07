@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import Form from './Form';
 
-const UpdateCourse = () => {
+const UpdateCourse = (props) => {
     const navigate = useNavigate();
     const [ course, getCourse ] = useState({
         course: [],
@@ -12,6 +13,7 @@ const UpdateCourse = () => {
         firstName: " ",
         lastName: " "
     });
+    const [ errors, setErrors ] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -33,52 +35,118 @@ const UpdateCourse = () => {
         });
     }, [id]);
 
-    // const handleUpdate = (id) => {
-    //     (async () => {
-    //         const requestOptions = {
-    //             method: 'PUT',
-    //             headers: { 'Content-Type': 'application/json'},
-    //             body: JSON.stringify({
-    //                 title: course.title,
-    //                 description: course.description,
-    //                 estimatedTime: course.estimatedTime,
-    //                 materialsNeeded: course.materialsNeeded,
-    //             })
-    //         };
-    //         const response = await fetch(`http://localhost:5000/api/courses/${id}/update`, requestOptions);
-    //         const data = await response.json()
-    //             .catch(error => {
-    //                 console.log(error);
-    //             })
-    //     })();
-    // }
+    const submit = () => {
+   
+        const context = props.context;
+
+        //updated course data
+        const course = {
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded,
+        }
+
+        context.data.updateCourse(course, id)
+            .then(errors => {
+                if(errors.length) {
+                    setErrors({errors});
+                    console.log('errors occurred');
+                } else {
+                    console.log('User is successfully created.')
+                }
+            })
+            .catch(err => {
+            console.log(err);
+            // this.props.history.push('/error');
+            }
+        );   
+    }
+
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value= e.target.value;
+
+        this.setState(() => {
+            return {
+                [name]: value
+            };
+        });
+    }
+
+    const cancel = () => {
+        console.log('cancelled');
+        // this.props.navigate('/api/courses');
+    }
+
+    const {
+        title,
+        description,
+        estimatedTime,
+        materialsNeeded,
+    } = course;
 
     return (
         <div className="wrap">
         <h2>Update Course</h2>
-        <form>
-            <div className="main--flex">
-                <div>
-                    <label for="courseTitle">Course Title</label>
-                    <input id="courseTitle" name="courseName" type="text" value={course.title}></input>
+        <Form 
+            cancel={cancel}
+            errors={errors}
+            submit={submit}
+            submitButtonText="Update Course"
+            elements={() => (
+                <React.Fragment>
+                    <div className="main--flex">
+                        <div>
+                            <label htmlFor="courseTitle">
+                                Course Title
+                                <input
+                                    id="courseTitle"
+                                    name="courseTitle"
+                                    type="text"
+                                    onChange={handleChange}
+                                    value={title} />
+                            </label>
+                            <p>`By User`</p>
 
-                    <p>{`By ${course.firstName} ${course.lastName}`}</p>
-
-                    <label for="courseDescription">Course Description</label>
-                    <textarea id="courseDescription" name="courseDescription" value={course.description}></textarea>
+                            <label htmlFor="courseDescription">
+                                Course Description
+                                <textarea
+                                    id="courseDescription"
+                                    name="courseDescription"
+                                    type="text"
+                                    onChange={handleChange} 
+                                    value={description} />
+                            </label>
+                        </div>
+                        
+                    <div>
+                        <label htmlFor="estimatedTime">
+                            Estimated Time
+                                <input 
+                                    id="estimatedTime"
+                                    name="estimatedTime"
+                                    type="text"
+                                    onChange={handleChange} 
+                                    value={estimatedTime}/>
+                        </label>
+                  
+                        <label htmlFor="materialsNeeded">
+                            Materials Needed
+                                <textarea 
+                                    id="materialsNeeded"
+                                    name="materialsNeeded"
+                                    type="text"
+                                    onChange={handleChange}
+                                    value={materialsNeeded} />
+                        </label> 
+                    </div> 
                 </div>
-                <div>
-                    <label for="estimatedTime">Estimated Time</label>
-                    <input id="estimatedTime" name="estimatedTime" type="text" value={course.estimatedTime || " "}></input>
+            </React.Fragment>
+          )}/>
+          </div>
+        );
+    };
 
-                    <label for="materialsNeeded">Materials Needed</label>
-                    <textarea id="materialsNeeded" name="materialsNeeded" value={course.materialsNeeded || " "}></textarea>
-                </div>
-            </div>
-            <button className="button" type="submit" onSubmit={"test"}>Update Course</button><Link to="/api/courses"><button className="button button-secondary" onClick={() => navigate("/api/courses")}>Cancel</button></Link>
-        </form>
-    </div>
-   );
-}
 
 export default UpdateCourse;

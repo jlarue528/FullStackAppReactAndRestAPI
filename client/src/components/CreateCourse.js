@@ -1,62 +1,148 @@
-import { Component } from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable no-lone-blocks */
+import React, { Component } from 'react';
+import Form from './Form'
+
 
 export default class CreateCourse extends Component {
 
     state = {
-        course: []
+        course: [{
+            title: " ",
+            description: " ",
+            estimatedTime: " ",
+            materialsNeeded: " "
+        }],
+        errors: []
     }
 
-  componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/`)
-      .then(res => res.json())
-      .then(responseData => {
-        this.setState({courses: responseData})
-      })
-      .catch(error => {
-        console.log('Error Fetching Data', error);
-      });
-  }
+    submit = () => {
+        const { context } = this.props;
 
-  submitCreateNewCourse = () => {
+        const {
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded
+        } = this.state.course
 
-  }
+        //new course data
+        const course = {
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded
+        }
+
+        context.data.createCourse(course)
+            .then(errors => {
+                if(errors.length) {
+                    this.setState({ errors });
+                    console.log('errors occurred');
+                } else {
+                    console.log('User is successfully created.')
+                }
+            })
+            .catch(err => {
+            console.log(err);
+            // this.props.history.push('/error');
+            }
+        );   
+    }
+
+    handleChange = (e) => {
+        const name = e.target.name;
+        const value= e.target.value;
+
+        this.setState(() => {
+            return {
+                [name]: value
+            };
+        });
+    }
+
+    cancel = () => {
+        console.log('cancelled');
+        // this.props.navigate('/api/courses');
+    }
 
   render() {
+
+    const {
+        title,
+        description,
+        estimatedTime,
+        materialsNeeded,
+    } = this.state.course;
+
+    const { errors } = this.state;
     
     return (
-            <main>
-                <div className="wrap">
-                    <h2>Create Course</h2>
-                    <div className="validation--errors">
+        <div className="wrap">
+            <h2>Create Course</h2>
+                    {/* <div className="main--flex"></div> */}
+                    {/* <div className="validation--errors">
                         <h3>Validation Errors</h3>
                         <ul>
                             <li>Please provide a value for "Title"</li>
                             <li>Please provide a value for "Description"</li>
                         </ul>
-                    </div>
-                    <form>
+                    </div> */}
+                <Form
+                    cancel={this.cancel}
+                    errors={errors}
+                    submit={this.submit}
+                    submitButtonText="Create Course"
+                    elements={() => (
+                    <React.Fragment>
                         <div className="main--flex">
                             <div>
-                                <label for="courseTitle">Course Title</label>
-                                <input id="courseTitle" name="courseTitle" type="text" value=""></input>
-    
-                                <p>By Joe Smith</p>
-    
-                                <label for="courseDescription">Course Description</label>
-                                <textarea id="courseDescription" name="courseDescription"></textarea>
+                                <label htmlFor="courseTitle">
+                                    Course Title
+                                    <input
+                                        id="courseTitle"
+                                        name="courseTitle"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        value={title} />
+                                </label>
+                                <p>`By User`</p>
+
+                                <label htmlFor="courseDescription">
+                                    Course Description
+                                    <textarea
+                                        id="courseDescription"
+                                        name="courseDescription"
+                                        type="text"
+                                        onChange={this.handleChange} 
+                                        value={description} />
+                                </label>
                             </div>
-                            <div>
-                                <label for="estimatedTime">Estimated Time</label>
-                                <input id="estimatedTime" name="estimatedTime" type="text" value=""></input>
-    
-                                <label for="materialsNeeded">Materials Needed</label>
-                                <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
-                            </div>
-                        </div>
-                        <button className="button" type="submit">Create Course</button><Link to="/api/courses"><button className="button button-secondary" onClick={this.props.clickCancel}>Cancel</button></Link>
-                    </form>
-                </div>
-            </main>
-  )};
+                            
+                        <div>
+                            <label htmlFor="estimatedTime">
+                                Estimated Time
+                                    <input 
+                                        id="estimatedTime"
+                                        name="estimatedTime"
+                                        type="text"
+                                        onChange={this.handleChange} 
+                                        value={estimatedTime}/>
+                            </label>
+                      
+                            <label htmlFor="materialsNeeded">
+                                Materials Needed
+                                    <textarea 
+                                        id="materialsNeeded"
+                                        name="materialsNeeded"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        value={materialsNeeded} />
+                            </label> 
+                        </div> 
+                    </div>
+                </React.Fragment>
+            )}/>
+          </div>
+        )
+    };
 };

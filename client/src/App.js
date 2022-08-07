@@ -23,6 +23,8 @@ import PrivateRoute from './PrivateRoute';
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
+const CreateCourseWithContext = withContext(CreateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 const HeaderWithContext = withContext(Header);
 
 export default class App extends Component {
@@ -34,8 +36,8 @@ export default class App extends Component {
 
           <Routes>
             <Route exact path="/api/courses" element={<Courses />}/>
-            <Route path="/api/courses/create" element={<CreateCourse />} />
-            <Route path="/api/courses/:id/update" element={<UpdateCourse />} />
+            <Route path="/api/courses/create" element={<CreateCourseWithContext />} />
+            <Route path="/api/courses/:id/update" element={<UpdateCourseWithContext />} />
             <Route path="/api/courses/:id" element={<CourseDetail />} />
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
