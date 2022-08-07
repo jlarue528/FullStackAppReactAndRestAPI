@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import ReactMarkDown from 'react-markdown';
 
 const CourseDetail = () => {
     const [ course, getCourse ] = useState({
@@ -51,6 +52,7 @@ const CourseDetail = () => {
                 <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
             </div>
         </div>;
+    
 
     const courseDetails =
         <div className="wrap">
@@ -61,22 +63,22 @@ const CourseDetail = () => {
                 <h3 className="course--detail--title">Course</h3>
                     <h4 className="course--name">{course.title}</h4>
                     <p>{ `By ${course.firstName} ${course.lastName}` }</p>
-                    <p>{course.description}</p>
+                    <ReactMarkDown children={`${course.description}`}/>
             </div>
             <div>
                 <h3 className="course--detail--title">Estimated Time</h3>
                     <p>{course.estimatedTime}</p>
 
                 <h3 className="course--detail--title">Materials Needed</h3>
-                    <ul className="course--detail--list">
-                        <li>{course.materialsNeeded}</li>
-                    </ul>
+                        <ReactMarkDown children={`${course.materialsNeeded}`}/>
+                            <ul className="course--detail--list" />
             </div>
             </div>
             </form>
-        </div>
+        </div>;
 
     return (
+      
             <main>
                 {actionButtons}
                 {courseDetails}

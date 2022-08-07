@@ -42,14 +42,14 @@ export default class App extends Component {
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />}/>
-            <Route 
+            {/* <Route 
               path="/authenticated"
               element={
                 <PrivateRoute>
                   <AuthWithContext />
                 </PrivateRoute>
               }
-            />
+            /> */}
             <Route path="/error" element={<Error />}/>
          </Routes>
       </BrowserRouter>
