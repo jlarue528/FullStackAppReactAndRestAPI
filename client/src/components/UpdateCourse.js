@@ -6,8 +6,8 @@ const UpdateCourse = (props) => {
     const navigate = useNavigate();
     
     const { context } = props;
-    const email = context.emailAddress;
-    const password = context.password;
+    console.log(context.authenticatedUser)
+    const auth = context.authenticatedUser;
     
     const [ course, getCourse ] = useState({
         course: [],
@@ -23,11 +23,7 @@ const UpdateCourse = (props) => {
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { 
-            method: 'GET',
-            credentials: {
-                "emailAddress": email,
-                "password": password,
-            }    
+            method: 'GET'
         })
             .then(res => res.json())
             .then(responseData => {
@@ -44,11 +40,12 @@ const UpdateCourse = (props) => {
         .catch(error => {
             console.log('Error Fetching Data', error);
         });
-    }, [id, email, password]);
+    }, [id]);
 
     const submit = () => {
    
         const context = props.context;
+        const credentials = context.authenticatedUser
 
         //updated course data
         const course = {
@@ -58,7 +55,7 @@ const UpdateCourse = (props) => {
             materialsNeeded,
         }
 
-        context.data.updateCourse(course, id)
+        context.data.updateCourse(course, id, credentials)
             .then(errors => {
                 if(errors.length) {
                     setErrors({errors});

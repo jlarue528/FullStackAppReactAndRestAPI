@@ -42,7 +42,13 @@ const CourseDetail = (props) => {
     }, [id]);
 
     const handleDelete = (courseId = id) => {
-        fetch(`http://localhost:5000/api/courses/${courseId}/delete`, { method: 'DELETE' })
+        fetch(`http://localhost:5000/api/courses/${courseId}/delete`, { 
+                method: 'DELETE',
+                credentials: {
+                    emailAddress: context.authenticatedUser.emailAddress,
+                    password: context.authenticatedUser.password
+                }
+            })
             .then(async res => await res.json())
             .then(() => {
                 console.log('removed');
@@ -59,6 +65,8 @@ const CourseDetail = (props) => {
                     <React.Fragment>
                         <NavLink to={`/api/courses/${id}/update`} className="button">Update Course</NavLink>
                         <NavLink to={`/api/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
+                        <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
+
                     </React.Fragment>
                     :
                     <React.Fragment>

@@ -24,7 +24,7 @@ export default class Data {
 
     async getUserData(emailAddress, password) {
         const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password});
-          if (response.status === 200) {
+        if (response.status === 200) {
             return response.json().then(data => data);
          }
           else if (response.status === 401) {
@@ -38,48 +38,48 @@ export default class Data {
 
     async createUser(user, credentials) {
         const response = await this.api('/users', 'POST', user, true, credentials);
-        if (response.status === 201) {
-          return [];
-        }
-        else if (response.status === 400) {
-          return response.json().then(data => {
-            return data.errors;
-          });
-        }
-        else {
-          throw new Error();
+        if(credentials) {
+            if (response.status === 201) {
+                return [];
+            } else if (response.status === 400) {
+                return response.json().then(data => {
+                  return data.errors;
+                });
+            }
+        } else {
+                throw new Error()
         }
     }
 
     async createCourse(course, credentials) {
         const response = await this.api('/courses', 'POST', course, true, credentials);
-        if (response.status === 201) {
-            console.log('course created successfully');
-          return [];
-        }
-        else if (response.status === 400) {
-          return response.json().then(data => {
-            return data.errors;
-          });
-        }
-        else {
-          throw new Error();
+        if(credentials) {
+            if (response.status === 201) {
+                console.log('course created successfully');
+              return [];
+            } else if (response.status === 400) {
+                return response.json().then(data => {
+                    return data.errors;
+                  });
+            }
+        } else {
+            throw new Error();
         }
     }
 
     async updateCourse(course, id, credentials) {
         const response = await this.api(`/courses/${id}`, 'PUT', course, true, credentials);
-        if (response.status === 201) {
-            console.log('course created successfully');
-          return [];
-        }
-        else if (response.status === 400) {
-          return response.json().then(data => {
-            return data.errors;
-          });
-        }
-        else {
-          throw new Error();
+        if(credentials) {
+            if (response.status === 201) {
+                console.log('course created successfully');
+              return [];
+            } else if (response.status === 400) {
+                return response.json().then(data => {
+                  return data.errors;
+                });
+            }
+        }  else {
+            throw new Error();
         }
     }
 }
