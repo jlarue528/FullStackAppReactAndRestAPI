@@ -7,7 +7,8 @@ const Context = React.createContext();
 export class Provider extends Component {
 
     state = {
-        authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null,
+        authenticatedUser: null,
+        // this.cookie ? JSON.parse(this.cookie) :
         emailAddress: " ",
         password: " "
     }
@@ -46,8 +47,7 @@ export class Provider extends Component {
                     password: password
                 };
             });
-
-            Cookies.set('authenticatedUser', JSON.stringify(user), {expires: 1});
+            // Cookies.set('authenticatedUser', JSON.stringify(user), {expires: 1});
         }
         return(user);
     }
@@ -56,7 +56,7 @@ export class Provider extends Component {
         this.setState({
             authenticatedUser: null
         });
-        Cookies.remove('authenticatedUser');
+        // Cookies.remove('authenticatedUser');
     }
 
 }
