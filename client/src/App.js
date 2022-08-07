@@ -4,7 +4,6 @@ import {
   BrowserRouter,
   Route,
   Routes,
-  Router
 } from 'react-router-dom';
 import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
@@ -26,6 +25,7 @@ const UserSignOutWithContext = withContext(UserSignOut);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const HeaderWithContext = withContext(Header);
+const AuthWithContext = withContext(Authenticated);
 
 export default class App extends Component {
   
@@ -42,10 +42,15 @@ export default class App extends Component {
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />}/>
-            {/* <Route path="/authenticated" element={<Authenticated />}/> */}
-            {/* <PrivateRoute path="/authenticated" element={Authenticated} /> */}
+            <Route 
+              path="/authenticated"
+              element={
+                <PrivateRoute>
+                  <AuthWithContext />
+                </PrivateRoute>
+              }
+            />
             <Route path="/error" element={<Error />}/>
-            {/* <PrivateRoute path="/authenticated" element={Authenticated} /> */}
          </Routes>
       </BrowserRouter>
     );

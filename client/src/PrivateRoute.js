@@ -1,18 +1,19 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React  from 'react';
-import { Route, Navigate} from 'react-router-dom';
+import React, { Component, useContext }  from 'react';
+import { Outlet, Navigate} from 'react-router-dom';
 import { Consumer } from './Context';
+
 
 export default ({ component: Component, ...rest }) => {
   return (
     <Consumer>
       { context => (
-        <Route
+        <Outlet
           {...rest}
-            render={props => context.authenticatedUser ? (
+            element={props => context.authenticatedUser ? (
                     <Component {...props}/>
                 ) : (
-                <Navigate to='/signin'/>
+                    <Navigate to='/signin'/>
                 )
             }
         />
@@ -20,3 +21,4 @@ export default ({ component: Component, ...rest }) => {
     </Consumer>
   );
 };
+
