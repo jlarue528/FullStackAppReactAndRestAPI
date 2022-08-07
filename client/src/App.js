@@ -26,6 +26,7 @@ const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const HeaderWithContext = withContext(Header);
 const AuthWithContext = withContext(Authenticated);
+const CourseDetailWithContext = withContext(CourseDetail);
 
 export default class App extends Component {
   
@@ -38,7 +39,7 @@ export default class App extends Component {
             <Route exact path="/api/courses" element={<Courses />}/>
             <Route path="/api/courses/create" element={<CreateCourseWithContext />} />
             <Route path="/api/courses/:id/update" element={<UpdateCourseWithContext />} />
-            <Route path="/api/courses/:id" element={<CourseDetail />} />
+            <Route path="/api/courses/:id" element={<CourseDetailWithContext />} />
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />}/>

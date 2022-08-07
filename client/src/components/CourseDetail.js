@@ -1,8 +1,15 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import ReactMarkDown from 'react-markdown';
 
-const CourseDetail = () => {
+const CourseDetail = (props) => {
+    
+    const { context } = props;
+    const authUser = context.authenticatedUser;
+    
+    // const user = context.data.getUserData();
+    // const userId = user.id;
+
     const [ course, getCourse ] = useState({
         course: [],
         title: " ",
@@ -13,6 +20,7 @@ const CourseDetail = () => {
         lastName: " "
     });
     const { id } = useParams();
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
@@ -47,9 +55,16 @@ const CourseDetail = () => {
     const  actionButtons =
         <div className="actions--bar">
             <div className="wrap">
-                <NavLink to={`/api/courses/${id}/update`} className="button">Update Course</NavLink>
-                <NavLink to={`/api/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
-                <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
+                {authUser ?
+                    <React.Fragment>
+                        <NavLink to={`/api/courses/${id}/update`} className="button">Update Course</NavLink>
+                        <NavLink to={`/api/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                        <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
+                    </React.Fragment>
+                }
             </div>
         </div>;
     

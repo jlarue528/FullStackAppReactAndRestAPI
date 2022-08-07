@@ -15,7 +15,7 @@ const Header = (props) => {
                     authUser ?
                     <React.Fragment>
                         <ul className="header--signedin">
-                            <li>Welcome, ${authUser.name}</li>
+                            <li>{`Welcome, ${authUser.name}`}</li>
                             <li><Link to="/signout">Sign Out</Link></li>
                         </ul>
                     </React.Fragment>
