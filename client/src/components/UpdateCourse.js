@@ -96,6 +96,8 @@ const UpdateCourse = (props) => {
         materialsNeeded,
     } = course;
 
+    console.log(course);
+
     return (
         <div className="wrap">
         <h2>Update Course</h2>
@@ -128,7 +130,7 @@ const UpdateCourse = (props) => {
                                         onChange={handleChange}
                                         value={title} />
                                 </label>
-                                <p>`By User`</p>
+                                <p>{`By ${course.firstName} ${course.lastName}`}</p>
 
                                 <label htmlFor="courseDescription">
                                     Course Description
