@@ -37,12 +37,16 @@ export default class App extends Component {
 
           <Routes>
             <Route exact path="/api/courses" element={<Courses />}/>
-            <Route path="/api/courses/create" element={<CreateCourseWithContext />} />
-            <Route path="/api/courses/:id/update" element={<UpdateCourseWithContext />} />
+            {/* <Route path="/api/courses/create" element={<CreateCourseWithContext />} /> */}
+            {/* <Route path="/api/courses/:id/update" element={<UpdateCourseWithContext />} /> */}
             <Route path="/api/courses/:id" element={<CourseDetailWithContext />} />
             <Route path="/signin" element={<UserSignInWithContext />} />
             <Route path="/signup" element={<UserSignUpWithContext />} />
             <Route path="/signout" element={<UserSignOutWithContext />}/>
+            <Route element={<PrivateRoute />}>
+                <Route path="/api/courses/create" element={<CreateCourseWithContext />}/>
+                <Route path="/api/courses/:id/update" element={<UpdateCourseWithContext />}/>
+            </Route>
             {/* <Route 
               path="/authenticated"
               element={

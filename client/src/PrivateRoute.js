@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { Component, useContext }  from 'react';
+import React from 'react';
 import { Outlet, Navigate} from 'react-router-dom';
 import { Consumer } from './Context';
 

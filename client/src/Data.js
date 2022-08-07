@@ -10,11 +10,14 @@ export default class Data {
         }
     
         if(body !== null) {
+            console.log('body of request', body);
           options.body = JSON.stringify(body);
         }
     
         if(requiresAuth) {
+        console.log('gets to auth');
           const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
+          console.log('encoded password', encodedCredentials)
     
           options.headers['Authorization'] = `Basic ${encodedCredentials}`;
         }
@@ -36,24 +39,21 @@ export default class Data {
       }
 
 
-    async createUser(user, credentials) {
-        const response = await this.api('/users', 'POST', user, true, credentials);
-        if(credentials) {
+    async createUser(user, emailAddress, password) {
+        const response = await this.api('/users', 'POST', user, true, { emailAddress, password});
             if (response.status === 201) {
                 return [];
             } else if (response.status === 400) {
                 return response.json().then(data => {
                   return data.errors;
                 });
-            }
-        } else {
+            } else {
                 throw new Error()
         }
     }
 
-    async createCourse(course, credentials) {
-        const response = await this.api('/courses', 'POST', course, true, credentials);
-        if(credentials) {
+    async createCourse(course, emailAddress, password) {
+        const response = await this.api('/courses', 'POST', course, true, { emailAddress, password});
             if (response.status === 201) {
                 console.log('course created successfully');
               return [];
@@ -61,18 +61,14 @@ export default class Data {
                 return response.json().then(data => {
                     return data.errors;
                   });
-            }
-        } else {
+            }   else {
             throw new Error();
         }
     }
 
     async updateCourse(course, id, emailAddress, password) {
-        const credentials = {
-            "emailAddress": emailAddress, 
-            "password": password
-        }
-        const response = await this.api(`/courses/${id}`, 'PUT', course, true, credentials);
+        const response = await this.api(`/courses/${id}`, 'PUT', course, true, { emailAddress, password});
+        console.log(response.body);
         // if(credentials) {
             if (response.status === 201) {
                 console.log('course created successfully');

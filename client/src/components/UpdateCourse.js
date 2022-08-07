@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+// import Courses from './Courses';
 import Form from './Form';
 
 const UpdateCourse = (props) => {
     const navigate = useNavigate();
     
     const { context } = props;
-    const authEmail = context.emailAddress;
-    const authPassword = context.password;
+    const emailAddress = context.emailAddress;
+    const password = context.password;
     
     const [ course, getCourse ] = useState({
         course: [],
@@ -44,14 +45,17 @@ const UpdateCourse = (props) => {
 
     const submit = () => {
         //updated course data
-        const course = {
+
+        console.log('courses', course);
+    
+        const courseUpdate = {
             title,
             description,
             estimatedTime,
             materialsNeeded,
         }
 
-        context.data.updateCourse(course, id, authEmail, authPassword)
+        context.data.updateCourse(courseUpdate, id, {emailAddress, password})
         .then(errors => {
             if(errors.length) {
                 setErrors({errors});
@@ -69,12 +73,23 @@ const UpdateCourse = (props) => {
     }
 
     const handleChange = (e) => {
-        const name = e.target.name;
+        let name = e.target.name;
         let value= e.target.value;
 
+        if(name === "courseTitle") {
+            name = 'title'
+        }
+        
+        if(name === "courseDescription") {
+            name = 'description'
+        }
+
         getCourse({
+            ...course,
             [name]: value
         });
+
+        console.log('updated values', course)
     }
 
     const cancel = () => {
