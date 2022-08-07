@@ -10,7 +10,7 @@ export default class CreateCourse extends Component {
             title: " ",
             description: " ",
             estimatedTime: " ",
-            materialsNeeded: " "
+            materialsNeeded: " ",
         }],
         errors: []
     }
@@ -51,15 +51,38 @@ export default class CreateCourse extends Component {
         );   
     }
 
-    handleChange = (e) => {
-        const name = e.target.name;
-        const value= e.target.value;
+    // handleChange = (e) => {
+    //     const name = e.target.name;
+    //     const value= e.target.value;
 
-        this.setState(() => {
-            return {
-                [name]: value
-            };
-        });
+    //     this.setState(() => {
+    //         return {
+    //             [name]: value
+    //         };
+    //     });
+    // }
+
+    handleChange (e) {
+        let name = e.target.name;
+        let value= e.target.value;
+
+        console.log(this.state);
+
+        // console.log(name);
+        // console.log(value);
+
+        if(name === "courseTitle") {
+            name = 'title'
+        }
+        
+        if(name === "courseDescription") {
+            name = 'description'
+        }
+
+        this.setState({
+            ...this.state.course,
+            [name]: value
+        })
     }
 
     cancel = () => {
@@ -111,7 +134,7 @@ export default class CreateCourse extends Component {
                                             onChange={this.handleChange}
                                             value={title} />
                                     </label>
-                                    <p>`By User`</p>
+                                    <p>{`By ${this.props.context.authenticatedUser.name}`}</p>
 
                                     <label htmlFor="courseDescription">
                                         Course Description
