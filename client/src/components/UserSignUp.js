@@ -73,54 +73,66 @@ export default class UserSignUp extends Component {
     return (
         <div className="form--centered">
                 <h2>Sign Up</h2>
-                <Form
-                    cancel={this.cancel}
-                    errors={errors}
-                    submit={this.submit}
-                    submitButtonText="Sign Up"
-                    elements={() => (
-                        <React.Fragment>
-                            <label htmlFor="firstName">
-                                First Name
-                                <input
-                                    id="firstName"
-                                    name="firstName"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    value={firstName} />
-                                </label>
-                            <label htmlFor="lastName">
-                                Last Name
-                                <input
-                                id="lastName"
-                                name="lastName"
-                                type="text"
-                                onChange={this.handleChange} 
-                                value={lastName} />
-                            </label>
-
-                            <label htmlFor="emailAddress">
-                                Email Address
-                                <input 
-                                id="emailAddress"
-                                name="emailAddress"
-                                type="text"
-                                onChange={this.handleChange} 
-                                value={emailAddress}/>
-                            </label>
-                          
-                            <label htmlFor="password">
-                                Password
-                                < input 
-                                id="password"
-                                name="password"
-                                type="text"
-                                onChange={this.handleChange}
-                                value={password} />
-                            </label> 
+                {
+                    this.errors.length ?
+                    <React.Fragment>
+                            <div className="validation--errors">
+                                <h3>Validation Errors</h3>
+                                <ul> {errors.map((error) => 
+                                    <li>{error}</li>
+                                )}
+                                </ul>
+                            </div> 
                         </React.Fragment>
-                    )}/>
-                <p>Already have a user account? Click here to <Link to="/signin">sign in</Link>!</p>
-        </div>
-    )};
+                        :
+                        <Form
+                            cancel={this.cancel}
+                            errors={errors}
+                            submit={this.submit}
+                            submitButtonText="Sign Up"
+                            elements={() => (
+                            <React.Fragment>
+                                <label htmlFor="firstName">
+                                    First Name
+                                    <input
+                                        id="firstName"
+                                        name="firstName"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        value={firstName} />
+                                    </label>
+                                <label htmlFor="lastName">
+                                    Last Name
+                                    <input
+                                        id="lastName"
+                                        name="lastName"
+                                        type="text"
+                                        onChange={this.handleChange} 
+                                        value={lastName} />
+                                </label>
+
+                                <label htmlFor="emailAddress">
+                                    Email Address
+                                    <input 
+                                        id="emailAddress"
+                                        name="emailAddress"
+                                        type="text"
+                                        onChange={this.handleChange} 
+                                        value={emailAddress}/>
+                                </label>
+                          
+                                <label htmlFor="password">
+                                    Password
+                                    < input 
+                                        id="password"
+                                        name="password"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        value={password} />
+                                </label> 
+                            </React.Fragment>
+                        )}/>}
+                    <p>Already have a user account? Click here to <Link to="/signin">sign in</Link>!</p>
+            </div>
+        )};
 };
