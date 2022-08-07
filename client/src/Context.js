@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Data from './Data';
+import Cookies from 'js-cookie';
 
 const Context = React.createContext();
 
 export class Provider extends Component {
 
     state = {
-        authenticatedUser: null
+        authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
     }
 
     constructor() {
@@ -41,12 +42,17 @@ export class Provider extends Component {
                     authenticatedUser: user
                 };
             });
+
+            Cookies.set('authenticatedUser', JSON.stringify(user), {expires: 1});
         }
         return(user);
     }
     
     signOut = async () => {
-        this.setState({authenticatedUser: null});
+        this.setState({
+            authenticatedUser: null
+        });
+        Cookies.remove('authenticatedUser');
     }
 
 }

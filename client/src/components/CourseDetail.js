@@ -79,15 +79,15 @@ const CourseDetail = (props) => {
                     <h4 className="course--name">{course.title}</h4>
                     <p>{ `By ${course.firstName} ${course.lastName}` }</p>
                     <ReactMarkDown children={`${course.description}`}/>
-            </div>
-            <div>
+                </div>
+                <div>
                 <h3 className="course--detail--title">Estimated Time</h3>
                     <p>{course.estimatedTime}</p>
 
                 <h3 className="course--detail--title">Materials Needed</h3>
                         <ReactMarkDown children={`${course.materialsNeeded}`}/>
                             <ul className="course--detail--list" />
-            </div>
+                </div>
             </div>
             </form>
         </div>;
