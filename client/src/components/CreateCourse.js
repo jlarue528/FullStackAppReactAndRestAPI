@@ -80,7 +80,6 @@ export default class CreateCourse extends Component {
     } = this.state.course;
 
     const { errors } = this.state;
-    console.log(errors);
     
     return (
         <div className="wrap">
