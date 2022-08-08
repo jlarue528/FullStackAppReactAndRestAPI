@@ -22,7 +22,7 @@ const UpdateCourse = (props) => {
     });
     const [ errors, setErrors ] = useState([]);
     const { id } = useParams();
-    console.log(id);
+    // console.log(id);
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { 
@@ -69,7 +69,8 @@ const UpdateCourse = (props) => {
         context.data.updateCourse(courseUpdate, id, emailAddress, password)
         .then(errors => {
             if(errors.length) {
-                setErrors({errors});
+                setErrors(errors);
+                console.log(errors);
             } else {
                 console.log('Course updated successfully')
             }
@@ -98,8 +99,6 @@ const UpdateCourse = (props) => {
             ...course,
             [name]: value
         });
-
-        console.log('updated values', course)
     }
 
     const cancel = () => {
@@ -113,20 +112,23 @@ const UpdateCourse = (props) => {
         materialsNeeded,
     } = course;
 
+    console.log(typeof errors.errors);
+    // console.log(errors.errors);
+    // const validationErrors =
+    //         <React.Fragment>
+    //             <div className="validation--errors">
+    //             <h3>Validation Errors</h3>
+    //             <ul> {errors.errors.map((error) => 
+    //                 <li>{error}</li>
+    //             )}
+    //             </ul>
+    //             </div> 
+    //         </React.Fragment>;
+
     return (
         <div className="wrap">
         <h2>Update Course</h2>
-        {errors.length ?
-            <React.Fragment>
-                <div className="validation--errors">
-                <h3>Validation Errors</h3>
-                <ul> {errors.map((error) => 
-                    <li>{error}</li>
-                )}
-                </ul>
-                </div> 
-            </React.Fragment>
-            :
+
             <Form 
                 cancel={cancel}
                 errors={errors}
@@ -181,7 +183,8 @@ const UpdateCourse = (props) => {
                         </div> 
                     </div>
                 </React.Fragment>
-            )}/>}
+            )}/>
+            {/* } */}
             </div>
         );
     };
