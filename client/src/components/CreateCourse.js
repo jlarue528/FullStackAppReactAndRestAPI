@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import Form from './Form'
 
-
 export default class CreateCourse extends Component {
 
     state = {
@@ -35,7 +34,12 @@ export default class CreateCourse extends Component {
             materialsNeeded
         }
 
-        context.data.createCourse(course, context.authenticatedUser)
+        const emailAddress = context.authenticatedUser.emailAddress;
+        const password = context.authenticatedUser.password;
+        console.log(emailAddress)
+        console.log(password);
+
+        context.data.createCourse(course, {emailAddress, password})
             .then(errors => {
                 if(errors.length) {
                     this.setState({ errors });
@@ -45,8 +49,8 @@ export default class CreateCourse extends Component {
                 }
             })
             .catch(err => {
-            console.log(err);
-            // this.props.history.push('/error');
+                console.log(err);
+                this.props.history.push('/error');
             }
         );   
     }
@@ -87,7 +91,7 @@ export default class CreateCourse extends Component {
 
     cancel = () => {
         console.log('cancelled');
-        // this.props.navigate('/api/courses');
+        this.props.history.push('/')
     }
 
   render() {
@@ -134,7 +138,7 @@ export default class CreateCourse extends Component {
                                             onChange={this.handleChange}
                                             value={title} />
                                     </label>
-                                    <p>{`By ${this.props.context.authenticatedUser.name}`}</p>
+                                    {/* <p>{`By ${this.props.context.authenticatedUser.name}`}</p> */}
 
                                     <label htmlFor="courseDescription">
                                         Course Description

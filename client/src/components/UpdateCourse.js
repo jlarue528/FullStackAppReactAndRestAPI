@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 // import Courses from './Courses';
 import Form from './Form';
 
@@ -21,6 +21,7 @@ const UpdateCourse = (props) => {
     });
     const [ errors, setErrors ] = useState([]);
     const { id } = useParams();
+    console.log(id);
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { 
@@ -28,6 +29,7 @@ const UpdateCourse = (props) => {
         })
             .then(res => res.json())
             .then(responseData => {
+                console.log(responseData);
                 getCourse({
                     course: responseData,
                     title: responseData.title,
@@ -41,7 +43,7 @@ const UpdateCourse = (props) => {
         .catch(error => {
             console.log('Error Fetching Data', error);
         });
-    }, [id]);
+    }, [id, course]);
 
     const submit = () => {
         //updated course data
@@ -65,8 +67,8 @@ const UpdateCourse = (props) => {
             }
         })
         .catch(err => {
-        console.log(err);
-        history.push('/error');
+            console.log(err);
+            history.push('/error');
         }
         );   
     }
