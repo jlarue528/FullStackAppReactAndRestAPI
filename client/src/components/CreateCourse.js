@@ -7,12 +7,14 @@ const CreateCourse = (props) => {
     const history = useHistory();
     
     const { context } = props;
+
+    const userId = context.authenticatedUser.id;
     
     const [ course, setCourse ] = useState({
         title: " ",
         description: " ",
         estimatedTime: " ",
-        materialsNeeded: " "
+        materialsNeeded: " ",
     });
     const [ errors, setErrors ] = useState([]);
 
@@ -30,6 +32,7 @@ const CreateCourse = (props) => {
             description,
             estimatedTime,
             materialsNeeded,
+            userId
         }
 
         context.data.createCourse(newCourse, emailAddress, password)
