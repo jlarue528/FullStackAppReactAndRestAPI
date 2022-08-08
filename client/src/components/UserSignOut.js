@@ -9,6 +9,7 @@ export default(props) => {
     }, [props.context.actions])
     
     let history = useHistory();
-    history.push('/signin');
+    history.push('/');
+    
     return null;
 }

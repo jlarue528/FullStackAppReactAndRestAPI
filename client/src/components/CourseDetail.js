@@ -18,6 +18,8 @@ const CourseDetail = (props) => {
     });
     const { id } = useParams();
 
+    console.log(course);
+
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
             .then(res => res.json())
@@ -56,7 +58,7 @@ const CourseDetail = (props) => {
     const actionButtons = 
         <div className="actions--bar">
             <div className="wrap">
-                {authUser && course.course.id === context.authenticatedUser.id ?
+                {authUser && course.course.userId === context.authenticatedUser.id ?
                     <React.Fragment>
                         <NavLink to={`/courses/${id}/update`} className="button">Update Course</NavLink>
                         <NavLink to={`/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>

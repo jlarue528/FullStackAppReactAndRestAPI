@@ -41,7 +41,20 @@ export default class UserSignUp extends Component {
             })
             .catch(err => {
             console.log(err);
-    });
+        });
+
+        context.actions.signIn(user.emailAddress, user.password)
+            .then(errors => {
+                if(errors.length) {
+                    this.setState({errors});
+                } else {
+                console.log('user successfully logged in')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        this.props.history.push("/");
     }
 
     cancel = () => {
@@ -60,6 +73,7 @@ export default class UserSignUp extends Component {
     }
 
     render() {
+        
         const {
             firstName,
             lastName,
@@ -67,6 +81,7 @@ export default class UserSignUp extends Component {
             password,
             errors,
           } = this.state;
+
     
     return (
         <div className="form--centered">
