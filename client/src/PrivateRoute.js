@@ -10,7 +10,7 @@ export default ({ component: Component, ...rest }) => {
       { context => (
         <Route
           {...rest}
-            component={props => context.authenticatedUser ? (
+            render={props => context.authenticatedUser ? (
                     <Component {...props}/>
                 ) : (
                     <Redirect to='/signin'/>
