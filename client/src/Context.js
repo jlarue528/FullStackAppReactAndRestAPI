@@ -54,6 +54,12 @@ export class Provider extends Component {
         return(user);
     }
     
+    /*
+        * This function handles functionality
+        * for signing a user out. It will update the 
+        * authenticatedUser state to null, which means
+        * the user is not signed in. 
+    */
     signOut = async () => {
         this.setState(() => {
             return {
