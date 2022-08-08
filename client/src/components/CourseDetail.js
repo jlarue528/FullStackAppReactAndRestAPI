@@ -60,8 +60,8 @@ const CourseDetail = (props) => {
         );
     }
     // && course.course.id === context.authenticatedUser.id
-    console.log('email', context.authenticatedUser.username);
-    console.log('password', context.authenticatedUser.password);
+    // console.log('email', context.authenticatedUser.username);
+    // console.log('password', context.authenticatedUser.password);
 
     const  actionButtons =
         <div className="actions--bar">
