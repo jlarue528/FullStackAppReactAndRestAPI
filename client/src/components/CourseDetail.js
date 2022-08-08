@@ -6,10 +6,6 @@ const CourseDetail = (props) => {
     
     const { context } = props;
     const authUser = context.authenticatedUser;
-    // const authUser = true;
-    
-    // const user = context.data.getUserData();
-    // const userId = user.id;
 
     const [ course, getCourse ] = useState({
         course: [],
@@ -20,7 +16,6 @@ const CourseDetail = (props) => {
         firstName: " ",
         lastName: " "
     });
-    // const [ errorState, setErrors ] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -59,9 +54,6 @@ const CourseDetail = (props) => {
         }
         );
     }
-    // && course.course.id === context.authenticatedUser.id
-    // console.log('email', context.authenticatedUser.username);
-    // console.log('password', context.authenticatedUser.password);
 
     const actionButtons = 
         <div className="actions--bar">

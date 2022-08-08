@@ -19,12 +19,8 @@ const CreateCourse = (props) => {
     const [ errors, setErrors ] = useState([]);
 
     const submit = () => {
-        // const emailAddress = context.authenticatedUser.username;
-        // const password = context.authenticatedUser.password;
-
-        const emailAddress = 'Tester@gmail.com';
-        const password = 'testpassword';
-
+        const emailAddress = context.authenticatedUser.username;
+        const password = context.authenticatedUser.password;
 
         //new course data
         const newCourse = {
@@ -101,7 +97,7 @@ const CreateCourse = (props) => {
                                         onChange={handleChange}
                                         value={course.title} />
                                 </label>
-                                {/* <p>{`By ${context.authenticatedUser.name}`}</p> */}
+                                <p>{`By ${context.authenticatedUser.name}`}</p>
 
                                 <label htmlFor="courseDescription">
                                     Course Description
