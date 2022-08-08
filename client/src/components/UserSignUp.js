@@ -12,6 +12,13 @@ export default class UserSignUp extends Component {
         errors: []
     };
 
+    /*
+        * This function handles functionality
+        * submitting the user sign up page:
+        * 1. It will sign the user in
+        * 2. It will authenticate the user
+        * 3. It will redirect to courses page
+    */
     submit = () => {
         const { context } = this.props;
         
@@ -57,10 +64,20 @@ export default class UserSignUp extends Component {
         this.props.history.push("/");
     }
 
+    /*
+        * This function handles functionality
+        * for the cancel button on the signup page.
+        * It will redirect the user to the courses page.
+    */
     cancel = () => {
         this.props.history.push('/');
     }
 
+     /*
+        * This function handles functionality
+        * changing field values on the sign up page
+        * based on user interaction.
+    */
     handleChange = (e) => {
         const name = e.target.name;
         const value= e.target.value;

@@ -10,11 +10,20 @@ export default (props) => {
     elements,
   } = props;
 
+  
+    /*
+        * This function will provide handle submit functionality 
+        * for all forms that use this component
+    */
   function handleSubmit(event) {
     event.preventDefault();
     submit();
   }
 
+   /*
+        * This function will provide handle cancel functionality 
+        * for all forms that use this component
+    */
   function handleCancel(event) {
     event.preventDefault();
     cancel();
@@ -33,6 +42,11 @@ export default (props) => {
     </div>
   );
 }
+
+/*
+    * This function will provide errors to the page that are rendered
+    * from validation errors on forms that use this component
+*/
 
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;

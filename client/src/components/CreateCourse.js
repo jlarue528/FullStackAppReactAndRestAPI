@@ -45,6 +45,11 @@ const CreateCourse = (props) => {
         );   
     }
 
+    
+    /*
+        * This function handles changes to the fields on the 
+        * page 
+    */
     const handleChange = (e) => {
         let name = e.target.name;
         let value= e.target.value;
@@ -63,6 +68,10 @@ const CreateCourse = (props) => {
         });
     }
 
+    
+    /*
+        * Function will direct the user back to the index page
+    */
     const cancel = () => {
         history.push(`/`);
     }

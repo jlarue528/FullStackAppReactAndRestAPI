@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Data from './Data';
-// import Cookies from 'js-cookie';
 
 const Context = React.createContext();
 
@@ -35,6 +34,11 @@ export class Provider extends Component {
         )
     }
 
+    /*
+        * This function handles functionality
+        * for signing a user in. It will sign a user in
+        * and update the state with the user data & password.
+    */
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUserData(emailAddress, password);
         user.password = password;

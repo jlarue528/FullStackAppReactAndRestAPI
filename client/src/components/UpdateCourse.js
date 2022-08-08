@@ -20,6 +20,11 @@ const UpdateCourse = (props) => {
     const [ errors, setErrors ] = useState([]);
     const { id } = useParams();
 
+    
+    /*
+        * This fetch call will provide data for the 
+        * designated course
+    */
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { 
             method: 'GET'
@@ -41,6 +46,11 @@ const UpdateCourse = (props) => {
         });
     }, [id]);
 
+    /*
+        * This function handles submit functionality for the 
+        * update course page - it will submit the form with 
+        * updated field values
+    */
     const submit = () => {
         const emailAddress = context.authenticatedUser.username;
         const password = context.authenticatedUser.password;
@@ -68,6 +78,10 @@ const UpdateCourse = (props) => {
         );   
     }
 
+    /*
+        * This function handles changes to the
+        * fields on the page
+    */
     const handleChange = (e) => {
         let name = e.target.name;
         let value= e.target.value;
@@ -86,6 +100,11 @@ const UpdateCourse = (props) => {
         });
     }
 
+    /*
+        * This function handles functionality
+        * for the cancel button - a user will
+        * be redirected to the course detail page
+    */
     const cancel = () => {
         history.push(`/courses/${id}`);
     }

@@ -32,7 +32,6 @@ export default class App extends Component {
     return (
       <BrowserRouter>
           <HeaderWithContext />
-  
 
           <Switch>
             <Route exact path="/" component={Courses}/>

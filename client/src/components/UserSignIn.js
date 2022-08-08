@@ -10,6 +10,12 @@ export default class UserSignIn extends Component {
         errors: [],
     };
 
+    /*
+        * This function handles submit 
+        * functionality for the sign in page.
+        * After successful submission of credentials
+        * the user will be redirected to courses page
+    */
     submit = () => {
         const { context } = this.props;
         const {
@@ -33,10 +39,20 @@ export default class UserSignIn extends Component {
             })
     }
 
+    /*
+        * This function handles functionality
+        * for the cancel button - a user will
+        * be redirected to the courses page
+    */
     cancel = () => {
         this.props.history.push("/");
     }
 
+    /*
+        * This function handles functionality
+        * for the changing values of the fields
+        * on the sign in page
+    */
     handleChange = (e) => {
         const name = e.target.name;
         const value= e.target.value;
