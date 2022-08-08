@@ -10,10 +10,12 @@ export default class Data {
         }
     
         if(body !== null) {
+            console.log('made it to body', body);
           options.body = JSON.stringify(body);
         }
     
         if(requiresAuth) {
+            console.log('made it to auth');
           const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
     
           options.headers['Authorization'] = `Basic ${encodedCredentials}`;
@@ -62,6 +64,7 @@ export default class Data {
                     return data.errors;
                   });
             }   else {
+            console.log(response);
             throw new Error();
         }
     }

@@ -7,9 +7,6 @@ const UpdateCourse = (props) => {
     const history = useHistory();
     
     const { context } = props;
-    // console.log(context);
-    // const emailAddress = context.authenticatedUser.username;
-    // const password = context.password;
     
     const [ course, getCourse ] = useState({
         course: [],
@@ -22,7 +19,6 @@ const UpdateCourse = (props) => {
     });
     const [ errors, setErrors ] = useState([]);
     const { id } = useParams();
-    // console.log(id);
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { 
@@ -46,17 +42,10 @@ const UpdateCourse = (props) => {
     }, [id]);
 
     const submit = () => {
-        //updated course data
-        console.log('context', context);
-        // const emailAddress = context.authenticatedUser.username;
-        const emailAddress = 'Tester@gmail.com';
-        //const password = context.password;
-        const password = 'testpassword'
-        console.log(emailAddress);
-        console.log(password);
+        const emailAddress = context.authenticatedUser.username;
+        const password = context.authenticatedUser.password;
 
-        console.log('courses', course);
-    
+        //updated course data
         const courseUpdate = {
             title,
             description,
@@ -64,20 +53,15 @@ const UpdateCourse = (props) => {
             materialsNeeded,
         }
 
-        console.log('updateCourseData', courseUpdate);
-
         context.data.updateCourse(courseUpdate, id, emailAddress, password)
         .then(errors => {
             if(errors.length) {
                 setErrors(errors);
-                console.log(errors);
             } else {
                 console.log('Course updated successfully')
             }
         })
         .catch(err => {
-            console.log('caught error', err);
-            console.log(err);
             history.push('/error');
         }
         );   
@@ -111,19 +95,6 @@ const UpdateCourse = (props) => {
         estimatedTime,
         materialsNeeded,
     } = course;
-
-    console.log(typeof errors.errors);
-    // console.log(errors.errors);
-    // const validationErrors =
-    //         <React.Fragment>
-    //             <div className="validation--errors">
-    //             <h3>Validation Errors</h3>
-    //             <ul> {errors.errors.map((error) => 
-    //                 <li>{error}</li>
-    //             )}
-    //             </ul>
-    //             </div> 
-    //         </React.Fragment>;
 
     return (
         <div className="wrap">
@@ -184,7 +155,6 @@ const UpdateCourse = (props) => {
                     </div>
                 </React.Fragment>
             )}/>
-            {/* } */}
             </div>
         );
     };
