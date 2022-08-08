@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 // import Courses from './Courses';
 import Form from './Form';
 
 const UpdateCourse = (props) => {
-    const navigate = useNavigate();
+    const history = useHistory();
     
     const { context } = props;
     const emailAddress = context.emailAddress;
@@ -66,8 +66,7 @@ const UpdateCourse = (props) => {
         })
         .catch(err => {
         console.log(err);
-        navigate('/error');
-        // this.props.history.push('/error');
+        this.props.history.push('/error');
         }
         );   
     }
@@ -94,8 +93,7 @@ const UpdateCourse = (props) => {
 
     const cancel = () => {
         console.log('cancelled');
-        navigate('/api/courses');
-        // this.props.navigate('/api/courses');
+        this.props.history.push('/api/courses');
     }
 
     const {

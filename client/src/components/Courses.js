@@ -11,6 +11,7 @@ export default class Courses extends Component {
         fetch('http://localhost:5000/api/courses')
           .then(res => res.json())
           .then(responseData => {
+            console.log(responseData)
             this.setState({courses: responseData})
           })
           .catch(error => {
@@ -20,6 +21,7 @@ export default class Courses extends Component {
 
   render() {
     const courseResults = this.state.courses;
+    console.log(courseResults);
     const courseList = courseResults.map((course) => {
        return (
          <Link to={`/api/courses/${course.id}`} className="course--module course--link" key={course.id}>

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default({ context }) => {
@@ -8,6 +8,6 @@ export default({ context }) => {
         context.actions.signOut();
     });
     
-    let navigate = useNavigate();
-    navigate('/signin');
+    let history = useHistory();
+    history.push('/signin');
 }
