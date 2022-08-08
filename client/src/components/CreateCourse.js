@@ -144,6 +144,6 @@ const CreateCourse = (props) => {
             )}/>
         </div>
        )
-    };
+};
 
 export default CreateCourse;
