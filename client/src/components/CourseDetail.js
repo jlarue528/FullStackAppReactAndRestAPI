@@ -63,10 +63,10 @@ const CourseDetail = (props) => {
     // console.log('email', context.authenticatedUser.username);
     // console.log('password', context.authenticatedUser.password);
 
-    const  actionButtons =
+    const actionButtons = 
         <div className="actions--bar">
             <div className="wrap">
-                {authUser ?
+                {authUser && course.course.id === context.authenticatedUser.id ?
                     <React.Fragment>
                         <NavLink to={`/courses/${id}/update`} className="button">Update Course</NavLink>
                         <NavLink to={`/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
@@ -81,7 +81,7 @@ const CourseDetail = (props) => {
         </div>;
     
 
-    const courseDetails =
+    const courseDetails = 
         <div className="wrap">
         <h2>Course Detail</h2>
             <form>
