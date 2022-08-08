@@ -11,6 +11,7 @@ export default class UserSignIn extends Component {
     };
 
     render() {
+        console.log(this.props);
         const {
             emailAddress,
             password,
@@ -66,19 +67,19 @@ export default class UserSignIn extends Component {
                     });
                     console.log('errors occurred');
                 } else {
-                    //navigate('/authenticated')
+                    this.props.history.push('/authenticated')
                     console.log('Success, you are signed in!');
                 }
             })
             .catch(err => {
                 console.log(err);
-                //navigate('/error')
+                // this.props.history.push('/error')
             })
     }
 
     cancel = () => {
         console.log('cancel');
-        // this.props.navigate('/api/courses');
+        // this.props.history.push("/");
     }
 
     handleChange = (e) => {

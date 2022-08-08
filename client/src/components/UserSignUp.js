@@ -73,7 +73,7 @@ export default class UserSignUp extends Component {
     return (
         <div className="form--centered">
                 <h2>Sign Up</h2>
-                {
+                {/* {
                     this.errors.length ?
                     <React.Fragment>
                             <div className="validation--errors">
@@ -84,7 +84,7 @@ export default class UserSignUp extends Component {
                                 </ul>
                             </div> 
                         </React.Fragment>
-                        :
+                        : */}
                         <Form
                             cancel={this.cancel}
                             errors={errors}
@@ -131,7 +131,8 @@ export default class UserSignUp extends Component {
                                         value={password} />
                                 </label> 
                             </React.Fragment>
-                        )}/>}
+                        )}/>
+                        {/* } */}
                     <p>Already have a user account? Click here to <Link to="/signin">sign in</Link>!</p>
             </div>
         )};

@@ -36,14 +36,14 @@ export default class App extends Component {
           <HeaderWithContext />
 
           <Switch>
-            <Route exact path="/" element={Courses}/>
-            <Route path="/api/courses/create" element={<CreateCourseWithContext />} /> 
-            <Route path="/api/courses/:id/update" element={<UpdateCourseWithContext />} />
-            <Route path="/api/courses/:id" element={<CourseDetailWithContext />} />
-            <Route path="/signin" element={<UserSignInWithContext />} />
-            <Route path="/signup" element={<UserSignUpWithContext />} />
-            <Route path="/signout" element={<UserSignOutWithContext />} />
-            <Route path="/error" element={<Error />}/>
+            <Route exact path="/" render={()=> <Courses/>}/>
+            <Route path="/courses/create" render={() => <CreateCourseWithContext />} /> 
+            <Route path="/courses/:id/update" render={() => <UpdateCourseWithContext />} />
+            <Route path="/courses/:id" render={() => <CourseDetailWithContext />} />
+            <Route path="/signin" render={() => <UserSignInWithContext />} />
+            <Route path="/signup" render={() => <UserSignUpWithContext />} />
+            <Route path="/signout" render={() => <UserSignOutWithContext />} />
+            <Route path="/error" render={() => <Error />}/>
          </Switch>
       </BrowserRouter>
     );

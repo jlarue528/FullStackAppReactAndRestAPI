@@ -29,7 +29,6 @@ const UpdateCourse = (props) => {
         })
             .then(res => res.json())
             .then(responseData => {
-                console.log(responseData);
                 getCourse({
                     course: responseData,
                     title: responseData.title,
@@ -43,7 +42,7 @@ const UpdateCourse = (props) => {
         .catch(error => {
             console.log('Error Fetching Data', error);
         });
-    }, [id, course]);
+    }, [id]);
 
     const submit = () => {
         //updated course data
@@ -95,7 +94,7 @@ const UpdateCourse = (props) => {
 
     const cancel = () => {
         console.log('cancelled');
-        history.push('/api/courses');
+        history.push('/');
     }
 
     const {

@@ -21,7 +21,6 @@ const CourseDetail = (props) => {
     });
     const { id } = useParams();
 
-
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
             .then(res => res.json())
@@ -63,13 +62,13 @@ const CourseDetail = (props) => {
             <div className="wrap">
                 {authUser ?
                     <React.Fragment>
-                        <NavLink to={`/api/courses/${id}/update`} className="button">Update Course</NavLink>
-                        <NavLink to={`/api/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
-                        <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
+                        <NavLink to={`/courses/${id}/update`} className="button">Update Course</NavLink>
+                        <NavLink to={`/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
+                        <NavLink to="/" className="button button-secondary">Return to List</NavLink>
                     </React.Fragment>
                     :
                     <React.Fragment>
-                        <NavLink to="/api/courses/" className="button button-secondary">Return to List</NavLink>
+                        <NavLink to="/" className="button button-secondary">Return to List</NavLink>
                     </React.Fragment>
                 }
             </div>
