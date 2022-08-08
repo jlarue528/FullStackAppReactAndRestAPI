@@ -36,11 +36,10 @@ const CreateCourse = (props) => {
                 if(errors.length) {
                     setErrors(errors);
             } else {
-                console.log('Course updated successfully')
             }
         })
         .catch(err => {
-            console.log('error:', err);
+            console.log('errors:', err)
             history.push('/error');
         }
         );   

@@ -51,8 +51,10 @@ export class Provider extends Component {
     }
     
     signOut = async () => {
-        this.setState({
-            authenticatedUser: null
+        this.setState(() => {
+            return {
+                authenticatedUser: null
+            }
         });
     }
 }

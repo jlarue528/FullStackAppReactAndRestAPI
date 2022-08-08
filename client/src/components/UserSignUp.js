@@ -41,15 +41,11 @@ export default class UserSignUp extends Component {
             })
             .catch(err => {
             console.log(err);
-            // context.history.push('/error');
     });
     }
 
     cancel = () => {
-        // const { context } = this.props;
-        console.log(this.props);
-        // this.context.history.push('/');
-        // this.props.navigate('/api/courses');
+        this.props.history.push('/');
     }
 
     handleChange = (e) => {
