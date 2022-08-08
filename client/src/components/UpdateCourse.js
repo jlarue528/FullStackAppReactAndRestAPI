@@ -48,8 +48,12 @@ const UpdateCourse = (props) => {
     const submit = () => {
         //updated course data
         console.log('context', context);
-        const emailAddress = context.authenticatedUser.username;
-        const password = context.password;
+        // const emailAddress = context.authenticatedUser.username;
+        const emailAddress = 'Tester@gmail.com';
+        //const password = context.password;
+        const password = 'testpassword'
+        console.log(emailAddress);
+        console.log(password);
 
         console.log('courses', course);
     
@@ -60,7 +64,7 @@ const UpdateCourse = (props) => {
             materialsNeeded,
         }
 
-        context.data.updateCourse(courseUpdate, id, {emailAddress, password})
+        context.data.updateCourse(courseUpdate, id, emailAddress, password)
         .then(errors => {
             if(errors.length) {
                 setErrors({errors});

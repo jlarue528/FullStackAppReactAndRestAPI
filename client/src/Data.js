@@ -33,6 +33,7 @@ export default class Data {
             return null;
           }
           else {
+            console.log(response);
             throw new Error();
           }
       }
@@ -66,8 +67,7 @@ export default class Data {
     }
 
     async updateCourse(course, id, emailAddress, password) {
-        const response = await this.api(`/courses/${id}`, 'PUT', course, true, { emailAddress, password});
-        console.log(response);
+        const response = await this.api(`/courses/${id}`, 'PUT', course, true, {emailAddress, password});
         // if(credentials) {
             if (response.status === 201) {
                 console.log('course created successfully');
@@ -78,7 +78,7 @@ export default class Data {
                 });
             // }
         }  else {
-            console.log('thrown errror', response.body)
+            console.log('thrown errror', response)
             throw new Error();
         }
     }
