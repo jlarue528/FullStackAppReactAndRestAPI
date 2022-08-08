@@ -98,7 +98,7 @@ const CreateCourse = (props) => {
                                         onChange={handleChange}
                                         value={course.title} />
                                 </label>
-                                <p>{`By ${context.authenticatedUser.name}`}</p>
+                                {/* <p>{`By ${context.authenticatedUser.name}`}</p> */}
 
                                 <label htmlFor="courseDescription">
                                     Course Description

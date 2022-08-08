@@ -64,7 +64,7 @@ export default class Data {
                     return data.errors;
                   });
             }   else {
-            console.log(response);
+            console.log(response.status);
             throw new Error();
         }
     }
