@@ -57,6 +57,8 @@ const CourseDetail = (props) => {
         .catch(err => {
             console.log('error:', err);
         });
+
+        this.props.history.push('/');
     }
   
     const actionButtons = 

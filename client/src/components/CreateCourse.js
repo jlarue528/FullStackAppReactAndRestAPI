@@ -36,13 +36,13 @@ const CreateCourse = (props) => {
                 if(errors.length) {
                     setErrors(errors);
             } else {
+                history.push('/');
             }
         })
         .catch(err => {
             console.log('errors:', err)
             history.push('/error');
-        }
-        );   
+        });   
     }
 
     
