@@ -66,7 +66,7 @@ const UpdateCourse = (props) => {
         })
         .catch(err => {
         console.log(err);
-        this.props.history.push('/error');
+        history.push('/error');
         }
         );   
     }
@@ -93,7 +93,7 @@ const UpdateCourse = (props) => {
 
     const cancel = () => {
         console.log('cancelled');
-        this.props.history.push('/api/courses');
+        history.push('/api/courses');
     }
 
     const {

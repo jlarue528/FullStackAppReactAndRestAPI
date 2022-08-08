@@ -36,7 +36,7 @@ export default class App extends Component {
           <HeaderWithContext />
 
           <Switch>
-            <Route exact path="/" element={<Courses />}/>
+            <Route exact path="/" element={Courses}/>
             <Route path="/api/courses/create" element={<CreateCourseWithContext />} /> 
             <Route path="/api/courses/:id/update" element={<UpdateCourseWithContext />} />
             <Route path="/api/courses/:id" element={<CourseDetailWithContext />} />
