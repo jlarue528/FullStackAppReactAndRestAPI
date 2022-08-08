@@ -116,7 +116,7 @@ export default class UserSignUp extends Component {
                                     < input 
                                         id="password"
                                         name="password"
-                                        type="text"
+                                        type="password"
                                         onChange={this.handleChange}
                                         value={password} />
                                 </label> 
