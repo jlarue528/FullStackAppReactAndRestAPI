@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import ReactMarkDown from 'react-markdown';
 
 const CourseDetail = (props) => {
-    
+    const history = useHistory();
     const { context } = props;
     const authUser = context.authenticatedUser;
 
@@ -52,13 +52,12 @@ const CourseDetail = (props) => {
                     console.log('Could not perform delete');
             } else {
                 console.log('Course deleted successfully')
+                history.push('/');
             }
         })
         .catch(err => {
             console.log('error:', err);
         });
-
-        this.props.history.push('/');
     }
   
     const actionButtons = 
@@ -66,8 +65,8 @@ const CourseDetail = (props) => {
             <div className="wrap">
                 {authUser && course.course.userId === context.authenticatedUser.id ?
                     <React.Fragment>
-                        <NavLink to={`/courses/${id}/update`} className="button">Update Course</NavLink>
-                        <NavLink to={`/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
+                        <NavLink to={`/courses/${course.course.id}/update`} className="button">Update Course</NavLink>
+                        <NavLink to={`/courses/${course.course.id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
                         <NavLink to="/" className="button button-secondary">Return to List</NavLink>
                     </React.Fragment>
                     :

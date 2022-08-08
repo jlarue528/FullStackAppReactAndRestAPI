@@ -43,6 +43,24 @@ export default class Data {
           }
       }
 
+       /*
+        * This function handles functionality for getting
+        * creating a new user calling the POST endpoint /users with 
+        * user provided data.
+    */
+    async getCourse(id, emailAddress, password) {
+        const response = await this.api(`/courses/${id}`, 'GET', null, true, {emailAddress, password});
+            if (response.status === 201) {
+                return [];
+            } else if (response.status === 400) {
+                return response.json().then(data => {
+                  return data.errors;
+                });
+            } else {
+                throw new Error()
+        }
+    }
+
     /*
         * This function handles functionality for getting
         * creating a new user calling the POST endpoint /users with 

@@ -6,6 +6,8 @@ const UpdateCourse = (props) => {
     const history = useHistory();
     
     const { context } = props;
+    const emailAddress = context.authenticatedUser.username;
+    const password = context.authenticatedUser.password;
     
     const [ course, getCourse ] = useState({
         course: [],
@@ -18,32 +20,47 @@ const UpdateCourse = (props) => {
     });
     const [ errors, setErrors ] = useState([]);
     const { id } = useParams();
-
-    
+    // const id  = course.id;
+    console.log(course)
+   
     /*
         * This fetch call will provide data for the 
         * designated course
     */
     useEffect(() => {
-        fetch(`http://localhost:5000/api/courses/${id}`, { 
-            method: 'GET'
+        context.data.getCourse(id, emailAddress, password)
+            .then(error => {
+                if(error.length) {
+                    console.log('Could not perform delete');
+            } else {
+                console.log('Course deleted successfully')
+            }
         })
-            .then(res => res.json())
-            .then(responseData => {
-                getCourse({
-                    course: responseData,
-                    title: responseData.title,
-                    description: responseData.description,
-                    estimatedTime: responseData.estimatedTime,
-                    materialsNeeded: responseData.materialsNeeded,
-                    firstName: responseData.User.firstName,
-                    lastName: responseData.User.lastName
-                })
-        })
-        .catch(error => {
-            console.log('Error Fetching Data', error);
+        .catch(err => {
+            console.log('error:', err);
         });
-    }, [id]);
+
+        history.push(`/courses/${id}`);
+        // fetch(`http://localhost:5000/api/courses/${id}`, { 
+        //     method: 'GET'
+        // })
+        //     .then(res => res.json())
+        //     .then(responseData => {
+        //         getCourse({
+        //             course: responseData,
+        //             title: responseData.title,
+        //             description: responseData.description,
+        //             estimatedTime: responseData.estimatedTime,
+        //             materialsNeeded: responseData.materialsNeeded,
+        //             firstName: responseData.User.firstName,
+        //             lastName: responseData.User.lastName
+        //         })
+        // })
+        // .catch(error => {
+        //     console.log('Error Fetching Data', error);
+        // });
+        // context.data.getCourse(id, emailAddress, password)
+    }, [context.data, id, emailAddress, password, history]);
 
     /*
         * This function handles submit functionality for the 
@@ -51,8 +68,8 @@ const UpdateCourse = (props) => {
         * updated field values
     */
     const submit = () => {
-        const emailAddress = context.authenticatedUser.username;
-        const password = context.authenticatedUser.password;
+        // const emailAddress = context.authenticatedUser.username;
+        // const password = context.authenticatedUser.password;
 
         //updated course data
         const courseUpdate = {
