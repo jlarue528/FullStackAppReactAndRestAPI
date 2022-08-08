@@ -41,12 +41,14 @@ export default class UserSignUp extends Component {
             })
             .catch(err => {
             console.log(err);
-            // this.props.history.push('/error');
+            // context.history.push('/error');
     });
     }
 
     cancel = () => {
+        // const { context } = this.props;
         console.log(this.props);
+        // this.context.history.push('/');
         // this.props.navigate('/api/courses');
     }
 
@@ -73,18 +75,6 @@ export default class UserSignUp extends Component {
     return (
         <div className="form--centered">
                 <h2>Sign Up</h2>
-                {/* {
-                    this.errors.length ?
-                    <React.Fragment>
-                            <div className="validation--errors">
-                                <h3>Validation Errors</h3>
-                                <ul> {errors.map((error) => 
-                                    <li>{error}</li>
-                                )}
-                                </ul>
-                            </div> 
-                        </React.Fragment>
-                        : */}
                         <Form
                             cancel={this.cancel}
                             errors={errors}
@@ -132,7 +122,6 @@ export default class UserSignUp extends Component {
                                 </label> 
                             </React.Fragment>
                         )}/>
-                        {/* } */}
                     <p>Already have a user account? Click here to <Link to="/signin">sign in</Link>!</p>
             </div>
         )};

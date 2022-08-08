@@ -6,6 +6,7 @@ const CourseDetail = (props) => {
     
     const { context } = props;
     const authUser = context.authenticatedUser;
+    // const authUser = true;
     
     // const user = context.data.getUserData();
     // const userId = user.id;
@@ -60,7 +61,7 @@ const CourseDetail = (props) => {
     const  actionButtons =
         <div className="actions--bar">
             <div className="wrap">
-                {authUser ?
+                {authUser && course.course.id === context.authenticatedUser.id?
                     <React.Fragment>
                         <NavLink to={`/courses/${id}/update`} className="button">Update Course</NavLink>
                         <NavLink to={`/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>
