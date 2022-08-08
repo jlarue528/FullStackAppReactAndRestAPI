@@ -64,16 +64,18 @@ const UpdateCourse = (props) => {
             materialsNeeded,
         }
 
+        console.log('updateCourseData', courseUpdate);
+
         context.data.updateCourse(courseUpdate, id, emailAddress, password)
         .then(errors => {
             if(errors.length) {
                 setErrors({errors});
-                console.log('errors occurred');
             } else {
-                console.log('User is successfully created.')
+                console.log('Course updated successfully')
             }
         })
         .catch(err => {
+            console.log('caught error', err);
             console.log(err);
             history.push('/error');
         }
@@ -101,8 +103,7 @@ const UpdateCourse = (props) => {
     }
 
     const cancel = () => {
-        console.log('cancelled');
-        history.push('/');
+        history.push(`/courses/${id}`);
     }
 
     const {
