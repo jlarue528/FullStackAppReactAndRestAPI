@@ -1,4 +1,4 @@
-export default class Data {
+export default class Data {    
     api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
         const url = `http://localhost:5000/api` + path;
     
@@ -23,7 +23,7 @@ export default class Data {
     }
 
     async getUserData(emailAddress, password) {
-        const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password});
+        const response = await this.api(`/users`, 'GET', null, true, {emailAddress, password});
         if (response.status === 200) {
             return response.json().then(data => 
                 data,
@@ -39,7 +39,7 @@ export default class Data {
 
 
     async createUser(user, emailAddress, password) {
-        const response = await this.api('/users', 'POST', user, true, { emailAddress, password});
+        const response = await this.api('/users', 'POST', user, true, {emailAddress, password});
             if (response.status === 201) {
                 return [];
             } else if (response.status === 400) {
@@ -67,7 +67,7 @@ export default class Data {
 
     async updateCourse(course, id, emailAddress, password) {
         const response = await this.api(`/courses/${id}`, 'PUT', course, true, { emailAddress, password});
-        console.log(response.body);
+        console.log(response);
         // if(credentials) {
             if (response.status === 201) {
                 console.log('course created successfully');
@@ -78,6 +78,7 @@ export default class Data {
                 });
             // }
         }  else {
+            console.log('thrown errror', response.body)
             throw new Error();
         }
     }

@@ -16,8 +16,6 @@ export default class CreateCourse extends Component {
 
     submit = () => {
         const { context } = this.props;
-        // const email = context.authenticatedUser.emailAddress;
-        // const password = context.authenticatedUser.password;
 
         const {
             title,
@@ -34,7 +32,7 @@ export default class CreateCourse extends Component {
             materialsNeeded
         }
 
-        const emailAddress = context.authenticatedUser.emailAddress;
+        const emailAddress = context.authenticatedUser.username;
         const password = context.authenticatedUser.password;
 
         context.data.createCourse(course, {emailAddress, password})
@@ -57,6 +55,8 @@ export default class CreateCourse extends Component {
         let name = e.target.name;
         let value= e.target.value;
 
+        console.log(this.state.course)
+
         if(name === "courseTitle") {
             name = 'title'
         }
@@ -64,6 +64,8 @@ export default class CreateCourse extends Component {
         if(name === "courseDescription") {
             name = 'description'
         }
+
+        // let { course } = this.state
 
         this.setState({
             ...this.state.course,

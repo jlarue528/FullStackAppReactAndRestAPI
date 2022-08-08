@@ -7,8 +7,9 @@ const UpdateCourse = (props) => {
     const history = useHistory();
     
     const { context } = props;
-    const emailAddress = context.emailAddress;
-    const password = context.password;
+    // console.log(context);
+    // const emailAddress = context.authenticatedUser.username;
+    // const password = context.password;
     
     const [ course, getCourse ] = useState({
         course: [],
@@ -46,6 +47,9 @@ const UpdateCourse = (props) => {
 
     const submit = () => {
         //updated course data
+        console.log('context', context);
+        const emailAddress = context.authenticatedUser.username;
+        const password = context.password;
 
         console.log('courses', course);
     
