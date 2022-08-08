@@ -17,8 +17,12 @@ const CreateCourse = (props) => {
     const [ errors, setErrors ] = useState([]);
 
     const submit = () => {
-        const emailAddress = context.authenticatedUser.username;
-        const password = context.authenticatedUser.password;
+        // const emailAddress = context.authenticatedUser.username;
+        // const password = context.authenticatedUser.password;
+
+        const emailAddress = 'Tester@gmail.com';
+        const password = 'testpassword';
+
 
         //new course data
         const newCourse = {
