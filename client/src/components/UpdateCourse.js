@@ -62,6 +62,7 @@ const UpdateCourse = (props) => {
             }
         })
         .catch(err => {
+            console.log('error:', err)
             history.push('/error');
         }
         );   

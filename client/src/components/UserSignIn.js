@@ -23,10 +23,8 @@ export default class UserSignIn extends Component {
                     this.setState(() => {
                         return{ errors: ['Sign-in was unsuccessful']}
                     });
-                    console.log('errors occurred');
                 } else {
-                    this.props.history.push('/')
-                    console.log('Success, you are signed in!');
+                    this.props.history.push('/');
                 }
             })
             .catch(err => {
@@ -36,7 +34,6 @@ export default class UserSignIn extends Component {
     }
 
     cancel = () => {
-        console.log('cancel');
         this.props.history.push("/");
     }
 
