@@ -11,7 +11,6 @@ export default class UserSignIn extends Component {
     };
 
     render() {
-        console.log(this.props);
         const {
             emailAddress,
             password,
@@ -67,7 +66,7 @@ export default class UserSignIn extends Component {
                     });
                     console.log('errors occurred');
                 } else {
-                    this.props.history.push('/authenticated')
+                    // this.props.history.push('/authenticated')
                     console.log('Success, you are signed in!');
                 }
             })

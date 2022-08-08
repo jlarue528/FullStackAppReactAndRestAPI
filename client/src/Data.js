@@ -10,25 +10,24 @@ export default class Data {
         }
     
         if(body !== null) {
-            console.log('body of request', body);
           options.body = JSON.stringify(body);
         }
     
         if(requiresAuth) {
-        console.log('gets to auth');
           const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
-          console.log('encoded password', encodedCredentials)
     
           options.headers['Authorization'] = `Basic ${encodedCredentials}`;
         }
-    
+   
         return fetch(url, options)
     }
 
     async getUserData(emailAddress, password) {
         const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password});
         if (response.status === 200) {
-            return response.json().then(data => data);
+            return response.json().then(data => 
+                data,
+            );
          }
           else if (response.status === 401) {
             return null;

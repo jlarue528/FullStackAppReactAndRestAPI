@@ -36,8 +36,6 @@ export default class CreateCourse extends Component {
 
         const emailAddress = context.authenticatedUser.emailAddress;
         const password = context.authenticatedUser.password;
-        console.log(emailAddress)
-        console.log(password);
 
         context.data.createCourse(course, {emailAddress, password})
             .then(errors => {
@@ -55,25 +53,9 @@ export default class CreateCourse extends Component {
         );   
     }
 
-    // handleChange = (e) => {
-    //     const name = e.target.name;
-    //     const value= e.target.value;
-
-    //     this.setState(() => {
-    //         return {
-    //             [name]: value
-    //         };
-    //     });
-    // }
-
     handleChange (e) {
         let name = e.target.name;
         let value= e.target.value;
-
-        console.log(this.state);
-
-        // console.log(name);
-        // console.log(value);
 
         if(name === "courseTitle") {
             name = 'title'
@@ -95,6 +77,8 @@ export default class CreateCourse extends Component {
     }
 
   render() {
+
+    console.log(this.state.course);
 
     const {
         title,

@@ -8,8 +8,6 @@ export class Provider extends Component {
 
     state = {
         authenticatedUser: null,
-        // this.cookie ? JSON.parse(this.cookie) :
-        emailAddress: "",
         password: ""
     }
 
@@ -39,14 +37,16 @@ export class Provider extends Component {
 
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUserData(emailAddress, password);
+
+        console.log(user.options);
         if(user !== null) {
             this.setState(() => {
                 return {
                     authenticatedUser: user,
-                    emailAddress: emailAddress,
                     password: password
                 };
             });
+            console.log(user);
             // Cookies.set('authenticatedUser', JSON.stringify(user), {expires: 1});
         }
         return(user);
