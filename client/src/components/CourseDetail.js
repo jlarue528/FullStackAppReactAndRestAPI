@@ -79,7 +79,7 @@ const CourseDetail = (props) => {
             <form>
             <div className="main--flex">
                 <div>
-                <h3 className="course--detail--title">Course</h3>
+                    <h3 className="course--detail--title">Course</h3>
                     <h4 className="course--name">{course.title}</h4>
                     <p>{ `By ${course.firstName} ${course.lastName}` }</p>
                     <ReactMarkDown children={`${course.description}`}/>
@@ -97,7 +97,6 @@ const CourseDetail = (props) => {
         </div>;
 
     return (
-      
             <main>
                 {actionButtons}
                 {courseDetails}

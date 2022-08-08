@@ -1,4 +1,4 @@
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import React, { Component } from 'react';
 import Form from './Form';
 
@@ -57,8 +57,6 @@ export default class UserSignIn extends Component {
             password,
             errors,
           } = this.state;
-
-          console.log(this.props);
             
           return (
             <div className="form--centered">

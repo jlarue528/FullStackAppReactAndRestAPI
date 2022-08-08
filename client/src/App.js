@@ -32,16 +32,17 @@ export default class App extends Component {
     return (
       <BrowserRouter>
           <HeaderWithContext />
+  
 
           <Switch>
-            <Route exact path="/" render={()=> <Courses/>}/>
+            <Route exact path="/" component={Courses}/>
             <PrivateRoute path="/courses/create" component={CreateCourseWithContext} /> 
             <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
-            <Route path="/courses/:id" render={() => <CourseDetailWithContext />} />
-            <Route path="/signin" render={() => <UserSignInWithContext />} />
-            <Route path="/signup" render={() => <UserSignUpWithContext />} />
+            <Route path="/courses/:id" component={CourseDetailWithContext} />
+            <Route path="/signin" component={UserSignInWithContext} />
+            <Route path="/signup" component={UserSignUpWithContext} />
             <Route path="/signout" component={UserSignOutWithContext} />
-            <Route path="/error" render={() => <Error />}/>
+            <Route path="/error" component={Error}/>
          </Switch>
       </BrowserRouter>
     );
