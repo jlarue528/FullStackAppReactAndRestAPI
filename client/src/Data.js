@@ -16,10 +16,13 @@ export default class Data {
     
         if(requiresAuth) {
             console.log('made it to auth');
+            console.log('insideAPI', credentials.emailAddress)
+
           const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
     
           options.headers['Authorization'] = `Basic ${encodedCredentials}`;
         }
+        console.log(options);
    
         return fetch(url, options)
     }
@@ -73,6 +76,22 @@ export default class Data {
         const response = await this.api(`/courses/${id}`, 'PUT', course, true, {emailAddress, password});
         if (response.status === 204) {
             console.log('course created successfully');
+            return [];
+        } else if (response.status === 400) {
+            return response.json().then(data => {
+                console.log('errors', data.errors)
+                return data.errors;
+            });
+        }  else {
+            console.log('thrown errror', response.status)
+            throw new Error();
+        }
+    }
+
+    async deleteCourse (id, emailAddress, password) {
+        const response = await this.api(`/courses/${id}`, 'DELETE', null, true, {emailAddress, password});
+        if (response.status === 204) {
+            console.log('course deleted successfully');
             return [];
         } else if (response.status === 400) {
             return response.json().then(data => {

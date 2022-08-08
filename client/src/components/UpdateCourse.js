@@ -54,9 +54,9 @@ const UpdateCourse = (props) => {
         }
 
         context.data.updateCourse(courseUpdate, id, emailAddress, password)
-        .then(errors => {
-            if(errors.length) {
-                setErrors(errors);
+            .then(errors => {
+                if(errors.length) {
+                    setErrors(errors);
             } else {
                 console.log('Course updated successfully')
             }

@@ -20,6 +20,7 @@ const CourseDetail = (props) => {
         firstName: " ",
         lastName: " "
     });
+    // const [ errorState, setErrors ] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -41,27 +42,31 @@ const CourseDetail = (props) => {
         });
     }, [id]);
 
-    const handleDelete = (courseId = id) => {
-        fetch(`http://localhost:5000/api/courses/${courseId}/delete`, { 
-                method: 'DELETE',
-                credentials: {
-                    emailAddress: context.authenticatedUser.emailAddress,
-                    password: context.authenticatedUser.password
-                }
-            })
-            .then(async res => await res.json())
-            .then(() => {
-                console.log('removed');
-            })
-            .catch(error => {
-                console.log('Delete Error', error)
-            })
+    const handleDelete = () => {
+        const emailAddress = context.authenticatedUser.username;
+        const password = context.authenticatedUser.password;
+        context.data.deleteCourse(id, emailAddress, password)
+            .then(error => {
+                if(error.length) {
+                    console.log('Could not perform delete');
+            } else {
+                console.log('Course deleted successfully')
+            }
+        })
+        .catch(err => {
+            console.log('error:', err);
+            // history.push('/error');
+        }
+        );
     }
+    // && course.course.id === context.authenticatedUser.id
+    console.log('email', context.authenticatedUser.username);
+    console.log('password', context.authenticatedUser.password);
 
     const  actionButtons =
         <div className="actions--bar">
             <div className="wrap">
-                {authUser && course.course.id === context.authenticatedUser.id?
+                {authUser ?
                     <React.Fragment>
                         <NavLink to={`/courses/${id}/update`} className="button">Update Course</NavLink>
                         <NavLink to={`/courses/${id}/delete`} className="button" onClick={handleDelete}>Delete Course</NavLink>

@@ -13,7 +13,6 @@ import UpdateCourse from './components/UpdateCourse';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
-// import Authenticated from './components/Authenticated'
 import Error from './components/Error';
 
 import withContext from './Context';
@@ -25,7 +24,6 @@ const UserSignOutWithContext = withContext(UserSignOut);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const HeaderWithContext = withContext(Header);
-// const AuthWithContext = withContext(Authenticated);
 const CourseDetailWithContext = withContext(CourseDetail);
 
 export default class App extends Component {
@@ -42,7 +40,7 @@ export default class App extends Component {
             <Route path="/courses/:id" render={() => <CourseDetailWithContext />} />
             <Route path="/signin" render={() => <UserSignInWithContext />} />
             <Route path="/signup" render={() => <UserSignUpWithContext />} />
-            <Route path="/signout" render={() => <UserSignOutWithContext />} />
+            <Route path="/signout" component={UserSignOutWithContext} />
             <Route path="/error" render={() => <Error />}/>
          </Switch>
       </BrowserRouter>
