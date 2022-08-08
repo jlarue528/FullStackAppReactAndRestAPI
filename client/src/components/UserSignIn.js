@@ -82,7 +82,7 @@ export default class UserSignIn extends Component {
                             <input
                             id="password"
                             name="password"
-                            type="text"
+                            type="password"
                             onChange={this.handleChange} 
                             value={password} />
                         </label>
