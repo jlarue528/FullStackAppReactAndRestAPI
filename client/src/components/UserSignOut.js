@@ -10,4 +10,5 @@ export default(props) => {
     
     let history = useHistory();
     history.push('/signin');
+    return null;
 }
