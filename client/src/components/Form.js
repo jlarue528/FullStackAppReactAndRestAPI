@@ -13,7 +13,8 @@ export default (props) => {
   
     /*
         * This function will provide handle submit functionality 
-        * for all forms that use this component
+        * for all forms that use this component. It will prevent
+        * the default behavior and submit the form.
     */
   function handleSubmit(event) {
     event.preventDefault();

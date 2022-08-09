@@ -19,7 +19,8 @@ const CourseDetail = (props) => {
     const { id } = useParams();
 
     /*
-        * This fetch call will retrieve data about the designated course
+        * This fetch call will retrieve data about the designated course.
+        * This response data 
     */
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
@@ -41,7 +42,11 @@ const CourseDetail = (props) => {
     }, [id]);
 
     /*
-        * This function will delete a course
+        * This function will delete a course by utilizing the course
+        * id. This function uses the deleteCourse method that can be
+        * found in the data.js file - this method is what actually deletes
+        * the course. If course is successfully deleted the user will be
+        * redirected to the index page.
     */
     const handleDelete = () => {
         const emailAddress = context.authenticatedUser.username;
@@ -60,7 +65,6 @@ const CourseDetail = (props) => {
         });
     }
     
-    console.log(course.course.id);
     const actionButtons = 
         <div className="actions--bar">
             <div className="wrap">

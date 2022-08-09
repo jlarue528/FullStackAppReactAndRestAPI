@@ -18,6 +18,11 @@ const CreateCourse = (props) => {
     });
     const [ errors, setErrors ] = useState([]);
 
+    /*
+        * This function handles the functionality for submitting
+        * a new course. It utilizes createCourse method - this method 
+        * will take in the user defined course form and submit it. 
+    */
     const submit = () => {
         const emailAddress = context.authenticatedUser.username;
         const password = context.authenticatedUser.password;
@@ -48,7 +53,8 @@ const CreateCourse = (props) => {
     
     /*
         * This function handles changes to the fields on the 
-        * page 
+        * page - whenever a field is updated this function will
+        * update the state of that field. 
     */
     const handleChange = (e) => {
         let name = e.target.name;
@@ -70,7 +76,8 @@ const CreateCourse = (props) => {
 
     
     /*
-        * Function will direct the user back to the index page
+        * This function will direct the user back to the index page
+        * if they select cancel.
     */
     const cancel = () => {
         history.push(`/`);

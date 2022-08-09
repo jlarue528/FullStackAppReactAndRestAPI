@@ -15,9 +15,11 @@ export default class UserSignUp extends Component {
     /*
         * This function handles functionality
         * submitting the user sign up page:
-        * 1. It will sign the user in
-        * 2. It will authenticate the user
-        * 3. It will redirect to courses page
+        * 1. It will sign the user up using the 
+        *    createUser method from the data.js file
+        * 2. It will authenticate the user using the
+        *    signIn method from the context.js file.
+        * 3. It will then redirect to index page
     */
     submit = () => {
         const { context } = this.props;
@@ -77,7 +79,9 @@ export default class UserSignUp extends Component {
      /*
         * This function handles functionality
         * changing field values on the sign up page
-        * based on user interaction.
+        * based on user interaction. When a user changes
+        * a field within the UserSignUp form the handleChange
+        * function will update the state.
     */
     handleChange = (e) => {
         const name = e.target.name;
@@ -100,7 +104,6 @@ export default class UserSignUp extends Component {
             errors,
           } = this.state;
 
-    console.log(this.state);
     return (
         <div className="form--centered">
                 <h2>Sign Up</h2>

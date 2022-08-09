@@ -23,7 +23,9 @@ const UpdateCourse = (props) => {
    
     /*
         * This fetch call will provide data for the 
-        * designated course
+        * designated course. This call will update the 
+        * state of the course - this data will be used
+        * to display the course details on the page.
     */
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
@@ -47,7 +49,7 @@ const UpdateCourse = (props) => {
     /*
         * This function handles submit functionality for the 
         * update course page - it will submit the form with 
-        * updated field values
+        * updated field values defined by the course state.
     */
     const submit = () => {
         //updated course data
@@ -75,7 +77,9 @@ const UpdateCourse = (props) => {
 
     /*
         * This function handles changes to the
-        * fields on the page
+        * fields on the page. When there is a change
+        * to a field the course state will update
+        * with the new user defined values. 
     */
     const handleChange = (e) => {
         let name = e.target.name;
@@ -99,6 +103,7 @@ const UpdateCourse = (props) => {
         * This function handles functionality
         * for the cancel button - a user will
         * be redirected to the course detail page
+        * when they utilize cancel.
     */
     const cancel = () => {
         history.push(`/courses/${id}`);

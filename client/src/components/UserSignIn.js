@@ -14,7 +14,7 @@ export default class UserSignIn extends Component {
         * This function handles submit 
         * functionality for the sign in page.
         * After successful submission of credentials
-        * the user will be redirected to courses page
+        * the user will be redirected to courses page.
     */
     submit = () => {
         const { context } = this.props;
@@ -42,16 +42,18 @@ export default class UserSignIn extends Component {
     /*
         * This function handles functionality
         * for the cancel button - a user will
-        * be redirected to the courses page
+        * be redirected to the courses page if 
+        * they utilize cancel.
     */
     cancel = () => {
         this.props.history.push("/");
     }
 
     /*
-        * This function handles functionality
-        * for the changing values of the fields
-        * on the sign in page
+        * This function handles changes to the
+        * fields on the page. When there is a change
+        * to a field the course state will update
+        * with the new user defined values. 
     */
     handleChange = (e) => {
         const name = e.target.name;

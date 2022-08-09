@@ -7,9 +7,10 @@ export default class Courses extends Component {
       courses: []
     };
 
-
     /*
-      * This fetch call will retrieve data about all courses
+      * This fetch call will retrieve data about all courses.
+      * The data retrieved from this call will populate the 
+      * index page with a list of all courses. 
     */
     componentDidMount() {
         fetch('http://localhost:5000/api/courses')

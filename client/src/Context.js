@@ -41,7 +41,6 @@ export class Provider extends Component {
     */
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUserData(emailAddress, password);
-        console.log(user);
         user.password = password;
 
         if(user !== null) {
@@ -57,7 +56,7 @@ export class Provider extends Component {
     
     /*
         * This function handles functionality
-        * for signing a user out. It will update the 
+        * for signing out a user. It will update the 
         * authenticatedUser state to null, which means
         * the user is not signed in. 
     */
