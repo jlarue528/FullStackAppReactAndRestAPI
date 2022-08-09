@@ -36,7 +36,7 @@ export default class UserSignUp extends Component {
             emailAddress,
             password
         }
-
+        
         context.data.createUser(user)
             .then(errors => {
                 if(errors.length) {
@@ -50,7 +50,7 @@ export default class UserSignUp extends Component {
             console.log(err);
         });
 
-        context.actions.signIn(user.emailAddress, user.password)
+        context.actions.signIn(this.context.authenticatedUser.username, this.context.authenticatedUser.password)
             .then(errors => {
                 if(errors.length) {
                     this.setState({errors});
@@ -99,7 +99,7 @@ export default class UserSignUp extends Component {
             errors,
           } = this.state;
 
-    
+    console.log(this.state);
     return (
         <div className="form--centered">
                 <h2>Sign Up</h2>

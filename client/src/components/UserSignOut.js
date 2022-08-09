@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default(props) => {
@@ -14,6 +14,6 @@ export default(props) => {
     
     let history = useHistory();
     history.push('/');
-    
-    return null;
+ 
+    return <Redirect to="/"/>
 }

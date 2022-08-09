@@ -59,7 +59,8 @@ const CourseDetail = (props) => {
             console.log('error:', err);
         });
     }
-  
+    
+    console.log(course.course.id);
     const actionButtons = 
         <div className="actions--bar">
             <div className="wrap">
