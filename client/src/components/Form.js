@@ -23,7 +23,8 @@ export default (props) => {
 
    /*
         * This function will provide handle cancel functionality 
-        * for all forms that use this component
+        * for all forms that use this component. It will prevent
+        * the default behavior and cancel.
     */
   function handleCancel(event) {
     event.preventDefault();

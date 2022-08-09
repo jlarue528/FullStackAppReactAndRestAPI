@@ -20,7 +20,8 @@ const CourseDetail = (props) => {
 
     /*
         * This fetch call will retrieve data about the designated course.
-        * This response data 
+        * This response data will be used to generate the designated course
+        * data on the page. 
     */
     useEffect(() => {
         fetch(`http://localhost:5000/api/courses/${id}`, { method: 'GET' })
